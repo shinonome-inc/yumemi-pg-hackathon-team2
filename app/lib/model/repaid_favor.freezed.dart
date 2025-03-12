@@ -20,10 +20,10 @@ RepaidFavor _$RepaidFavorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RepaidFavor {
-  String get id => throw _privateConstructorUsedError; // UUID
-  String get receivedFavorId => throw _privateConstructorUsedError; // 受けた恩id
-  String get favorText => throw _privateConstructorUsedError; // 御恩のテキスト
-  DateTime get favorDate => throw _privateConstructorUsedError; // 御恩の日時
+  String get id => throw _privateConstructorUsedError; // この奉公の個別id
+  String get receivedFavorId => throw _privateConstructorUsedError; // 受けた恩のid
+  String get favorText => throw _privateConstructorUsedError; // 奉公のテキスト
+  DateTime get favorDate => throw _privateConstructorUsedError; // 奉公をした日時
   String get memo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -152,8 +152,8 @@ class __$$RepaidFavorImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RepaidFavorImpl implements _RepaidFavor {
   _$RepaidFavorImpl(
-      {this.id = "",
-      required this.receivedFavorId,
+      {required this.id,
+      this.receivedFavorId = "",
       required this.favorText,
       required this.favorDate,
       this.memo = ""});
@@ -162,18 +162,18 @@ class _$RepaidFavorImpl implements _RepaidFavor {
       _$$RepaidFavorImplFromJson(json);
 
   @override
-  @JsonKey()
   final String id;
-// UUID
+// この奉公の個別id
   @override
+  @JsonKey()
   final String receivedFavorId;
-// 受けた恩id
+// 受けた恩のid
   @override
   final String favorText;
-// 御恩のテキスト
+// 奉公のテキスト
   @override
   final DateTime favorDate;
-// 御恩の日時
+// 奉公をした日時
   @override
   @JsonKey()
   final String memo;
@@ -219,8 +219,8 @@ class _$RepaidFavorImpl implements _RepaidFavor {
 
 abstract class _RepaidFavor implements RepaidFavor {
   factory _RepaidFavor(
-      {final String id,
-      required final String receivedFavorId,
+      {required final String id,
+      final String receivedFavorId,
       required final String favorText,
       required final DateTime favorDate,
       final String memo}) = _$RepaidFavorImpl;
@@ -230,13 +230,13 @@ abstract class _RepaidFavor implements RepaidFavor {
 
   @override
   String get id;
-  @override // UUID
+  @override // この奉公の個別id
   String get receivedFavorId;
-  @override // 受けた恩id
+  @override // 受けた恩のid
   String get favorText;
-  @override // 御恩のテキスト
+  @override // 奉公のテキスト
   DateTime get favorDate;
-  @override // 御恩の日時
+  @override // 奉公をした日時
   String get memo;
   @override
   @JsonKey(ignore: true)

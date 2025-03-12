@@ -8,8 +8,8 @@ part of 'repaid_favor.dart';
 
 _$RepaidFavorImpl _$$RepaidFavorImplFromJson(Map<String, dynamic> json) =>
     _$RepaidFavorImpl(
-      id: json['id'] as String? ?? "",
-      receivedFavorId: json['receivedFavorId'] as String,
+      id: json['id'] as String,
+      receivedFavorId: json['receivedFavorId'] as String? ?? "",
       favorText: json['favorText'] as String,
       favorDate: DateTime.parse(json['favorDate'] as String),
       memo: json['memo'] as String? ?? "",

@@ -20,9 +20,10 @@ ReceivedFavor _$ReceivedFavorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReceivedFavor {
-  String get id => throw _privateConstructorUsedError; // UUID
+  String get id => throw _privateConstructorUsedError; // この御恩の個別id
+  String get giverName => throw _privateConstructorUsedError; // 恩人の名前
   String get favorText => throw _privateConstructorUsedError; // 御恩のテキスト
-  DateTime get favorDate => throw _privateConstructorUsedError; // 御恩の日時
+  DateTime get favorDate => throw _privateConstructorUsedError; // 御恩を受けた日時
   String get memo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +38,12 @@ abstract class $ReceivedFavorCopyWith<$Res> {
           ReceivedFavor value, $Res Function(ReceivedFavor) then) =
       _$ReceivedFavorCopyWithImpl<$Res, ReceivedFavor>;
   @useResult
-  $Res call({String id, String favorText, DateTime favorDate, String memo});
+  $Res call(
+      {String id,
+      String giverName,
+      String favorText,
+      DateTime favorDate,
+      String memo});
 }
 
 /// @nodoc
@@ -54,6 +60,7 @@ class _$ReceivedFavorCopyWithImpl<$Res, $Val extends ReceivedFavor>
   @override
   $Res call({
     Object? id = null,
+    Object? giverName = null,
     Object? favorText = null,
     Object? favorDate = null,
     Object? memo = null,
@@ -62,6 +69,10 @@ class _$ReceivedFavorCopyWithImpl<$Res, $Val extends ReceivedFavor>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      giverName: null == giverName
+          ? _value.giverName
+          : giverName // ignore: cast_nullable_to_non_nullable
               as String,
       favorText: null == favorText
           ? _value.favorText
@@ -87,7 +98,12 @@ abstract class _$$ReceivedFavorImplCopyWith<$Res>
       __$$ReceivedFavorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String favorText, DateTime favorDate, String memo});
+  $Res call(
+      {String id,
+      String giverName,
+      String favorText,
+      DateTime favorDate,
+      String memo});
 }
 
 /// @nodoc
@@ -102,6 +118,7 @@ class __$$ReceivedFavorImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? giverName = null,
     Object? favorText = null,
     Object? favorDate = null,
     Object? memo = null,
@@ -110,6 +127,10 @@ class __$$ReceivedFavorImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      giverName: null == giverName
+          ? _value.giverName
+          : giverName // ignore: cast_nullable_to_non_nullable
               as String,
       favorText: null == favorText
           ? _value.favorText
@@ -131,7 +152,8 @@ class __$$ReceivedFavorImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReceivedFavorImpl implements _ReceivedFavor {
   _$ReceivedFavorImpl(
-      {this.id = "",
+      {required this.id,
+      required this.giverName,
       required this.favorText,
       required this.favorDate,
       this.memo = ""});
@@ -140,22 +162,24 @@ class _$ReceivedFavorImpl implements _ReceivedFavor {
       _$$ReceivedFavorImplFromJson(json);
 
   @override
-  @JsonKey()
   final String id;
-// UUID
+// この御恩の個別id
+  @override
+  final String giverName;
+// 恩人の名前
   @override
   final String favorText;
 // 御恩のテキスト
   @override
   final DateTime favorDate;
-// 御恩の日時
+// 御恩を受けた日時
   @override
   @JsonKey()
   final String memo;
 
   @override
   String toString() {
-    return 'ReceivedFavor(id: $id, favorText: $favorText, favorDate: $favorDate, memo: $memo)';
+    return 'ReceivedFavor(id: $id, giverName: $giverName, favorText: $favorText, favorDate: $favorDate, memo: $memo)';
   }
 
   @override
@@ -164,6 +188,8 @@ class _$ReceivedFavorImpl implements _ReceivedFavor {
         (other.runtimeType == runtimeType &&
             other is _$ReceivedFavorImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.giverName, giverName) ||
+                other.giverName == giverName) &&
             (identical(other.favorText, favorText) ||
                 other.favorText == favorText) &&
             (identical(other.favorDate, favorDate) ||
@@ -173,7 +199,8 @@ class _$ReceivedFavorImpl implements _ReceivedFavor {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, favorText, favorDate, memo);
+  int get hashCode =>
+      Object.hash(runtimeType, id, giverName, favorText, favorDate, memo);
 
   @JsonKey(ignore: true)
   @override
@@ -191,7 +218,8 @@ class _$ReceivedFavorImpl implements _ReceivedFavor {
 
 abstract class _ReceivedFavor implements ReceivedFavor {
   factory _ReceivedFavor(
-      {final String id,
+      {required final String id,
+      required final String giverName,
       required final String favorText,
       required final DateTime favorDate,
       final String memo}) = _$ReceivedFavorImpl;
@@ -201,11 +229,13 @@ abstract class _ReceivedFavor implements ReceivedFavor {
 
   @override
   String get id;
-  @override // UUID
+  @override // この御恩の個別id
+  String get giverName;
+  @override // 恩人の名前
   String get favorText;
   @override // 御恩のテキスト
   DateTime get favorDate;
-  @override // 御恩の日時
+  @override // 御恩を受けた日時
   String get memo;
   @override
   @JsonKey(ignore: true)
