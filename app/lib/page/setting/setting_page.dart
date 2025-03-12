@@ -30,17 +30,6 @@ class SettingPage extends HookConsumerWidget {
               )
             ],
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('$homeState'),
-              TextButton(
-                onPressed: () =>
-                    ref.read(shareNotifierProvider.notifier).increment(),
-                child: const Text("Increment Riverpod"),
-              )
-            ],
-          ),
         ],
       ),
     );

@@ -50,6 +50,7 @@ dependencies:
   uuid:
   freezed_annotation:
   json_annotation:
+  riverpod_paging_utils: ^0.7.0
 
 dev_dependencies:
   flutter_test:

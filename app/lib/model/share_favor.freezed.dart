@@ -24,7 +24,7 @@ mixin _$ShareFavor {
   String get userName => throw _privateConstructorUsedError; // ユーザー名
   String get id => throw _privateConstructorUsedError; // この投稿の個別id
   String get receivedFavorText => throw _privateConstructorUsedError; // 御恩のテキスト
-  DateTime get eceivedFavorDate => throw _privateConstructorUsedError; // 御恩の日時
+  DateTime get receivedFavorDate => throw _privateConstructorUsedError; // 御恩の日時
   String get repaidFavorText => throw _privateConstructorUsedError; // 御恩のテキスト
   DateTime get repaiedFavorDate => throw _privateConstructorUsedError;
 
@@ -45,7 +45,7 @@ abstract class $ShareFavorCopyWith<$Res> {
       String userName,
       String id,
       String receivedFavorText,
-      DateTime eceivedFavorDate,
+      DateTime receivedFavorDate,
       String repaidFavorText,
       DateTime repaiedFavorDate});
 }
@@ -67,7 +67,7 @@ class _$ShareFavorCopyWithImpl<$Res, $Val extends ShareFavor>
     Object? userName = null,
     Object? id = null,
     Object? receivedFavorText = null,
-    Object? eceivedFavorDate = null,
+    Object? receivedFavorDate = null,
     Object? repaidFavorText = null,
     Object? repaiedFavorDate = null,
   }) {
@@ -88,9 +88,9 @@ class _$ShareFavorCopyWithImpl<$Res, $Val extends ShareFavor>
           ? _value.receivedFavorText
           : receivedFavorText // ignore: cast_nullable_to_non_nullable
               as String,
-      eceivedFavorDate: null == eceivedFavorDate
-          ? _value.eceivedFavorDate
-          : eceivedFavorDate // ignore: cast_nullable_to_non_nullable
+      receivedFavorDate: null == receivedFavorDate
+          ? _value.receivedFavorDate
+          : receivedFavorDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
       repaidFavorText: null == repaidFavorText
           ? _value.repaidFavorText
@@ -117,7 +117,7 @@ abstract class _$$ShareFavorImplCopyWith<$Res>
       String userName,
       String id,
       String receivedFavorText,
-      DateTime eceivedFavorDate,
+      DateTime receivedFavorDate,
       String repaidFavorText,
       DateTime repaiedFavorDate});
 }
@@ -137,7 +137,7 @@ class __$$ShareFavorImplCopyWithImpl<$Res>
     Object? userName = null,
     Object? id = null,
     Object? receivedFavorText = null,
-    Object? eceivedFavorDate = null,
+    Object? receivedFavorDate = null,
     Object? repaidFavorText = null,
     Object? repaiedFavorDate = null,
   }) {
@@ -158,9 +158,9 @@ class __$$ShareFavorImplCopyWithImpl<$Res>
           ? _value.receivedFavorText
           : receivedFavorText // ignore: cast_nullable_to_non_nullable
               as String,
-      eceivedFavorDate: null == eceivedFavorDate
-          ? _value.eceivedFavorDate
-          : eceivedFavorDate // ignore: cast_nullable_to_non_nullable
+      receivedFavorDate: null == receivedFavorDate
+          ? _value.receivedFavorDate
+          : receivedFavorDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
       repaidFavorText: null == repaidFavorText
           ? _value.repaidFavorText
@@ -182,7 +182,7 @@ class _$ShareFavorImpl implements _ShareFavor {
       required this.userName,
       required this.id,
       required this.receivedFavorText,
-      required this.eceivedFavorDate,
+      required this.receivedFavorDate,
       required this.repaidFavorText,
       required this.repaiedFavorDate});
 
@@ -202,7 +202,7 @@ class _$ShareFavorImpl implements _ShareFavor {
   final String receivedFavorText;
 // 御恩のテキスト
   @override
-  final DateTime eceivedFavorDate;
+  final DateTime receivedFavorDate;
 // 御恩の日時
   @override
   final String repaidFavorText;
@@ -212,7 +212,7 @@ class _$ShareFavorImpl implements _ShareFavor {
 
   @override
   String toString() {
-    return 'ShareFavor(userId: $userId, userName: $userName, id: $id, receivedFavorText: $receivedFavorText, eceivedFavorDate: $eceivedFavorDate, repaidFavorText: $repaidFavorText, repaiedFavorDate: $repaiedFavorDate)';
+    return 'ShareFavor(userId: $userId, userName: $userName, id: $id, receivedFavorText: $receivedFavorText, receivedFavorDate: $receivedFavorDate, repaidFavorText: $repaidFavorText, repaiedFavorDate: $repaiedFavorDate)';
   }
 
   @override
@@ -226,8 +226,8 @@ class _$ShareFavorImpl implements _ShareFavor {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.receivedFavorText, receivedFavorText) ||
                 other.receivedFavorText == receivedFavorText) &&
-            (identical(other.eceivedFavorDate, eceivedFavorDate) ||
-                other.eceivedFavorDate == eceivedFavorDate) &&
+            (identical(other.receivedFavorDate, receivedFavorDate) ||
+                other.receivedFavorDate == receivedFavorDate) &&
             (identical(other.repaidFavorText, repaidFavorText) ||
                 other.repaidFavorText == repaidFavorText) &&
             (identical(other.repaiedFavorDate, repaiedFavorDate) ||
@@ -237,7 +237,7 @@ class _$ShareFavorImpl implements _ShareFavor {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, userId, userName, id,
-      receivedFavorText, eceivedFavorDate, repaidFavorText, repaiedFavorDate);
+      receivedFavorText, receivedFavorDate, repaidFavorText, repaiedFavorDate);
 
   @JsonKey(ignore: true)
   @override
@@ -259,7 +259,7 @@ abstract class _ShareFavor implements ShareFavor {
       required final String userName,
       required final String id,
       required final String receivedFavorText,
-      required final DateTime eceivedFavorDate,
+      required final DateTime receivedFavorDate,
       required final String repaidFavorText,
       required final DateTime repaiedFavorDate}) = _$ShareFavorImpl;
 
@@ -275,7 +275,7 @@ abstract class _ShareFavor implements ShareFavor {
   @override // この投稿の個別id
   String get receivedFavorText;
   @override // 御恩のテキスト
-  DateTime get eceivedFavorDate;
+  DateTime get receivedFavorDate;
   @override // 御恩の日時
   String get repaidFavorText;
   @override // 御恩のテキスト

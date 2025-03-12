@@ -13,7 +13,7 @@ class ShareFavor with _$ShareFavor {
     required String userName, // ユーザー名
     required String id, // この投稿の個別id
     required String receivedFavorText, // 御恩のテキスト
-    required DateTime eceivedFavorDate, // 御恩の日時
+    required DateTime receivedFavorDate, // 御恩の日時
     required String repaidFavorText, // 御恩のテキスト
     required DateTime repaiedFavorDate, // 御恩の日時
   }) = _ShareFavor;

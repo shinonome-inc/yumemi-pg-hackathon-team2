@@ -12,7 +12,7 @@ _$ShareFavorImpl _$$ShareFavorImplFromJson(Map<String, dynamic> json) =>
       userName: json['userName'] as String,
       id: json['id'] as String,
       receivedFavorText: json['receivedFavorText'] as String,
-      eceivedFavorDate: DateTime.parse(json['eceivedFavorDate'] as String),
+      receivedFavorDate: DateTime.parse(json['receivedFavorDate'] as String),
       repaidFavorText: json['repaidFavorText'] as String,
       repaiedFavorDate: DateTime.parse(json['repaiedFavorDate'] as String),
     );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$ShareFavorImplToJson(_$ShareFavorImpl instance) =>
       'userName': instance.userName,
       'id': instance.id,
       'receivedFavorText': instance.receivedFavorText,
-      'eceivedFavorDate': instance.eceivedFavorDate.toIso8601String(),
+      'receivedFavorDate': instance.receivedFavorDate.toIso8601String(),
       'repaidFavorText': instance.repaidFavorText,
       'repaiedFavorDate': instance.repaiedFavorDate.toIso8601String(),
     };
