@@ -1,0 +1,274 @@
+{
+  "share-favors": [
+    {
+      "userId": "123",
+      "userName": "田中太郎",
+      "id": "001",
+      "receivedFavorText": "荷物を運んでもらった",
+      "receivedFavorDate": "2024-03-10T12:00:00Z",
+      "repaidFavorText": "お礼にお茶を奢った",
+      "repaiedFavorDate": "2024-03-11T12:00:00Z"
+    },
+    {
+      "userId": "124",
+      "userName": "佐藤花子",
+      "id": "002",
+      "receivedFavorText": "道案内をしてもらった",
+      "receivedFavorDate": "2024-03-09T13:00:00Z",
+      "repaidFavorText": "感謝の手紙を書いた",
+      "repaiedFavorDate": "2024-03-10T13:00:00Z"
+    },
+    {
+      "userId": "125",
+      "userName": "鈴木一郎",
+      "id": "003",
+      "receivedFavorText": "宿題を手伝ってもらった",
+      "receivedFavorDate": "2024-03-08T14:00:00Z",
+      "repaidFavorText": "ジュースをおごった",
+      "repaiedFavorDate": "2024-03-09T14:00:00Z"
+    },
+    {
+      "userId": "126",
+      "userName": "高橋健",
+      "id": "004",
+      "receivedFavorText": "書類をコピーしてもらった",
+      "receivedFavorDate": "2024-03-07T15:00:00Z",
+      "repaidFavorText": "お菓子をあげた",
+      "repaiedFavorDate": "2024-03-08T15:00:00Z"
+    },
+    {
+      "userId": "127",
+      "userName": "中村優子",
+      "id": "005",
+      "receivedFavorText": "傘を貸してもらった",
+      "receivedFavorDate": "2024-03-06T16:00:00Z",
+      "repaidFavorText": "後日新品を返した",
+      "repaiedFavorDate": "2024-03-07T16:00:00Z"
+    },
+    {
+      "userId": "128",
+      "userName": "松本翔",
+      "id": "006",
+      "receivedFavorText": "プレゼンの練習を手伝ってもらった",
+      "receivedFavorDate": "2024-03-05T12:00:00Z",
+      "repaidFavorText": "ランチをご馳走した",
+      "repaiedFavorDate": "2024-03-06T12:00:00Z"
+    },
+    {
+      "userId": "129",
+      "userName": "山田美咲",
+      "id": "007",
+      "receivedFavorText": "買い物を手伝ってもらった",
+      "receivedFavorDate": "2024-03-04T13:00:00Z",
+      "repaidFavorText": "お土産を渡した",
+      "repaiedFavorDate": "2024-03-05T13:00:00Z"
+    },
+    {
+      "userId": "130",
+      "userName": "井上大輔",
+      "id": "008",
+      "receivedFavorText": "パソコンの設定を手伝ってもらった",
+      "receivedFavorDate": "2024-03-03T14:00:00Z",
+      "repaidFavorText": "映画のチケットをプレゼントした",
+      "repaiedFavorDate": "2024-03-04T14:00:00Z"
+    },
+    {
+      "userId": "131",
+      "userName": "木村佳乃",
+      "id": "009",
+      "receivedFavorText": "仕事を手伝ってもらった",
+      "receivedFavorDate": "2024-03-02T15:00:00Z",
+      "repaidFavorText": "コーヒーを奢った",
+      "repaiedFavorDate": "2024-03-03T15:00:00Z"
+    },
+    {
+      "userId": "132",
+      "userName": "藤田誠",
+      "id": "010",
+      "receivedFavorText": "車で送ってもらった",
+      "receivedFavorDate": "2024-03-01T16:00:00Z",
+      "repaidFavorText": "ディナーを奢った",
+      "repaiedFavorDate": "2024-03-02T16:00:00Z"
+    },
+    {
+      "userId": "134",
+      "userName": "田中太郎",
+      "id": "011",
+      "receivedFavorText": "荷物を運んでもらった",
+      "receivedFavorDate": "2024-03-10T12:00:00Z",
+      "repaidFavorText": "お礼にお茶を奢った",
+      "repaiedFavorDate": "2024-03-11T12:00:00Z"
+    },
+    {
+      "userId": "135",
+      "userName": "佐藤花子",
+      "id": "012",
+      "receivedFavorText": "道案内をしてもらった",
+      "receivedFavorDate": "2024-03-09T13:00:00Z",
+      "repaidFavorText": "感謝の手紙を書いた",
+      "repaiedFavorDate": "2024-03-10T13:00:00Z"
+    },
+    {
+      "userId": "136",
+      "userName": "鈴木一郎",
+      "id": "013",
+      "receivedFavorText": "宿題を手伝ってもらった",
+      "receivedFavorDate": "2024-03-08T14:00:00Z",
+      "repaidFavorText": "ジュースをおごった",
+      "repaiedFavorDate": "2024-03-09T14:00:00Z"
+    },
+    {
+      "userId": "137",
+      "userName": "高橋健",
+      "id": "014",
+      "receivedFavorText": "書類をコピーしてもらった",
+      "receivedFavorDate": "2024-03-07T15:00:00Z",
+      "repaidFavorText": "お菓子をあげた",
+      "repaiedFavorDate": "2024-03-08T15:00:00Z"
+    },
+    {
+      "userId": "138",
+      "userName": "中村優子",
+      "id": "015",
+      "receivedFavorText": "傘を貸してもらった",
+      "receivedFavorDate": "2024-03-06T16:00:00Z",
+      "repaidFavorText": "後日新品を返した",
+      "repaiedFavorDate": "2024-03-07T16:00:00Z"
+    },
+    {
+      "userId": "139",
+      "userName": "松本翔",
+      "id": "016",
+      "receivedFavorText": "プレゼンの練習を手伝ってもらった",
+      "receivedFavorDate": "2024-03-05T12:00:00Z",
+      "repaidFavorText": "ランチをご馳走した",
+      "repaiedFavorDate": "2024-03-06T12:00:00Z"
+    },
+    {
+      "userId": "140",
+      "userName": "山田美咲",
+      "id": "017",
+      "receivedFavorText": "買い物を手伝ってもらった",
+      "receivedFavorDate": "2024-03-04T13:00:00Z",
+      "repaidFavorText": "お土産を渡した",
+      "repaiedFavorDate": "2024-03-05T13:00:00Z"
+    },
+    {
+      "userId": "141",
+      "userName": "井上大輔",
+      "id": "018",
+      "receivedFavorText": "パソコンの設定を手伝ってもらった",
+      "receivedFavorDate": "2024-03-03T14:00:00Z",
+      "repaidFavorText": "映画のチケットをプレゼントした",
+      "repaiedFavorDate": "2024-03-04T14:00:00Z"
+    },
+    {
+      "userId": "142",
+      "userName": "木村佳乃",
+      "id": "019",
+      "receivedFavorText": "仕事を手伝ってもらった",
+      "receivedFavorDate": "2024-03-02T15:00:00Z",
+      "repaidFavorText": "コーヒーを奢った",
+      "repaiedFavorDate": "2024-03-03T15:00:00Z"
+    },
+    {
+      "userId": "143",
+      "userName": "藤田誠",
+      "id": "020",
+      "receivedFavorText": "車で送ってもらった",
+      "receivedFavorDate": "2024-03-01T16:00:00Z",
+      "repaidFavorText": "ディナーを奢った",
+      "repaiedFavorDate": "2024-03-02T16:00:00Z"
+    },
+    {
+      "userId": "144",
+      "userName": "田中太郎",
+      "id": "021",
+      "receivedFavorText": "荷物を運んでもらった",
+      "receivedFavorDate": "2024-03-10T12:00:00Z",
+      "repaidFavorText": "お礼にお茶を奢った",
+      "repaiedFavorDate": "2024-03-11T12:00:00Z"
+    },
+    {
+      "userId": "145",
+      "userName": "佐藤花子",
+      "id": "022",
+      "receivedFavorText": "道案内をしてもらった",
+      "receivedFavorDate": "2024-03-09T13:00:00Z",
+      "repaidFavorText": "感謝の手紙を書いた",
+      "repaiedFavorDate": "2024-03-10T13:00:00Z"
+    },
+    {
+      "userId": "146",
+      "userName": "鈴木一郎",
+      "id": "023",
+      "receivedFavorText": "宿題を手伝ってもらった",
+      "receivedFavorDate": "2024-03-08T14:00:00Z",
+      "repaidFavorText": "ジュースをおごった",
+      "repaiedFavorDate": "2024-03-09T14:00:00Z"
+    },
+    {
+      "userId": "147",
+      "userName": "高橋健",
+      "id": "024",
+      "receivedFavorText": "書類をコピーしてもらった",
+      "receivedFavorDate": "2024-03-07T15:00:00Z",
+      "repaidFavorText": "お菓子をあげた",
+      "repaiedFavorDate": "2024-03-08T15:00:00Z"
+    },
+    {
+      "userId": "148",
+      "userName": "中村優子",
+      "id": "025",
+      "receivedFavorText": "傘を貸してもらった",
+      "receivedFavorDate": "2024-03-06T16:00:00Z",
+      "repaidFavorText": "後日新品を返した",
+      "repaiedFavorDate": "2024-03-07T16:00:00Z"
+    },
+    {
+      "userId": "149",
+      "userName": "松本翔",
+      "id": "026",
+      "receivedFavorText": "プレゼンの練習を手伝ってもらった",
+      "receivedFavorDate": "2024-03-05T12:00:00Z",
+      "repaidFavorText": "ランチをご馳走した",
+      "repaiedFavorDate": "2024-03-06T12:00:00Z"
+    },
+    {
+      "userId": "150",
+      "userName": "山田美咲",
+      "id": "027",
+      "receivedFavorText": "買い物を手伝ってもらった",
+      "receivedFavorDate": "2024-03-04T13:00:00Z",
+      "repaidFavorText": "お土産を渡した",
+      "repaiedFavorDate": "2024-03-05T13:00:00Z"
+    },
+    {
+      "userId": "151",
+      "userName": "井上大輔",
+      "id": "028",
+      "receivedFavorText": "パソコンの設定を手伝ってもらった",
+      "receivedFavorDate": "2024-03-03T14:00:00Z",
+      "repaidFavorText": "映画のチケットをプレゼントした",
+      "repaiedFavorDate": "2024-03-04T14:00:00Z"
+    },
+    {
+      "userId": "152",
+      "userName": "木村佳乃",
+      "id": "029",
+      "receivedFavorText": "仕事を手伝ってもらった",
+      "receivedFavorDate": "2024-03-02T15:00:00Z",
+      "repaidFavorText": "コーヒーを奢った",
+      "repaiedFavorDate": "2024-03-03T15:00:00Z"
+    },
+    {
+      "userId": "153",
+      "userName": "藤田誠",
+      "id": "030",
+      "receivedFavorText": "車で送ってもらった",
+      "receivedFavorDate": "2024-03-01T16:00:00Z",
+      "repaidFavorText": "ディナーを奢った",
+      "repaiedFavorDate": "2024-03-02T16:00:00Z"
+    }
+  ]
+}

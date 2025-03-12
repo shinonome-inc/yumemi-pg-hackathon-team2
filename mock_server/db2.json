@@ -1,0 +1,31 @@
+{
+  "share-favors": [
+    {
+      "userId": "123",
+      "userName": "田中太郎",
+      "id": "001",
+      "receivedFavorText": "荷物を運んでもらった",
+      "receivedFavorDate": "2024-03-10T12:00:00Z",
+      "repaidFavorText": "お礼にお茶を奢った",
+      "repaiedFavorDate": "2024-03-11T12:00:00Z"
+    },
+    {
+      "userId": "124",
+      "userName": "佐藤花子",
+      "id": "002",
+      "receivedFavorText": "道案内をしてもらった",
+      "receivedFavorDate": "2024-03-09T15:30:00Z",
+      "repaidFavorText": "感謝の手紙を書いた",
+      "repaiedFavorDate": "2024-03-10T10:00:00Z"
+    },
+    {
+      "userId": "125",
+      "userName": "鈴木一郎",
+      "id": "003",
+      "receivedFavorText": "宿題を手伝ってもらった",
+      "receivedFavorDate": "2024-03-08T20:00:00Z",
+      "repaidFavorText": "ジュースをおごった",
+      "repaiedFavorDate": "2024-03-09T14:00:00Z"
+    }
+  ]
+}
