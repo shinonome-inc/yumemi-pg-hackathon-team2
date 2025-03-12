@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/ko_cha78/fvm/versions/3.29.1/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/ko_cha78/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/ko_cha78/Documents/GitHub/yumemi-pg-hackathon-team2/app/android/app/.cxx/Debug/j2r5h184/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/ko_cha78/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/ko_cha78/Documents/GitHub/yumemi-pg-hackathon-team2/app/android/app/.cxx/Debug/j2r5h184/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
