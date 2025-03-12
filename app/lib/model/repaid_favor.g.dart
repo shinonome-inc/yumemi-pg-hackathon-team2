@@ -9,16 +9,17 @@ part of 'repaid_favor.dart';
 _$RepaidFavorImpl _$$RepaidFavorImplFromJson(Map<String, dynamic> json) =>
     _$RepaidFavorImpl(
       id: json['id'] as String? ?? "",
-      receivedFavor:
-          ReceivedFavor.fromJson(json['receivedFavor'] as Map<String, dynamic>),
-      repaidText: json['repaidText'] as String,
-      repaidDate: DateTime.parse(json['repaidDate'] as String),
+      receivedFavorId: json['receivedFavorId'] as String,
+      favorText: json['favorText'] as String,
+      favorDate: DateTime.parse(json['favorDate'] as String),
+      memo: json['memo'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$RepaidFavorImplToJson(_$RepaidFavorImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'receivedFavor': instance.receivedFavor,
-      'repaidText': instance.repaidText,
-      'repaidDate': instance.repaidDate.toIso8601String(),
+      'receivedFavorId': instance.receivedFavorId,
+      'favorText': instance.favorText,
+      'favorDate': instance.favorDate.toIso8601String(),
+      'memo': instance.memo,
     };
