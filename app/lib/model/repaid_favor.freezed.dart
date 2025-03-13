@@ -20,11 +20,11 @@ RepaidFavor _$RepaidFavorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RepaidFavor {
-  String get id => throw _privateConstructorUsedError; // 返した恩のUUID（postのID）
-  ReceivedFavor get receivedFavor =>
-      throw _privateConstructorUsedError; // 受けた恩のデータ
-  String get repaidText => throw _privateConstructorUsedError; // 奉公のテキスト
-  DateTime get repaidDate => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError; // この奉公の個別id
+  String get receivedFavorId => throw _privateConstructorUsedError; // 受けた恩のid
+  String get favorText => throw _privateConstructorUsedError; // 奉公のテキスト
+  DateTime get favorDate => throw _privateConstructorUsedError; // 奉公をした日時
+  String get memo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,11 +40,10 @@ abstract class $RepaidFavorCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      ReceivedFavor receivedFavor,
-      String repaidText,
-      DateTime repaidDate});
-
-  $ReceivedFavorCopyWith<$Res> get receivedFavor;
+      String receivedFavorId,
+      String favorText,
+      DateTime favorDate,
+      String memo});
 }
 
 /// @nodoc
@@ -61,36 +60,33 @@ class _$RepaidFavorCopyWithImpl<$Res, $Val extends RepaidFavor>
   @override
   $Res call({
     Object? id = null,
-    Object? receivedFavor = null,
-    Object? repaidText = null,
-    Object? repaidDate = null,
+    Object? receivedFavorId = null,
+    Object? favorText = null,
+    Object? favorDate = null,
+    Object? memo = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      receivedFavor: null == receivedFavor
-          ? _value.receivedFavor
-          : receivedFavor // ignore: cast_nullable_to_non_nullable
-              as ReceivedFavor,
-      repaidText: null == repaidText
-          ? _value.repaidText
-          : repaidText // ignore: cast_nullable_to_non_nullable
+      receivedFavorId: null == receivedFavorId
+          ? _value.receivedFavorId
+          : receivedFavorId // ignore: cast_nullable_to_non_nullable
               as String,
-      repaidDate: null == repaidDate
-          ? _value.repaidDate
-          : repaidDate // ignore: cast_nullable_to_non_nullable
+      favorText: null == favorText
+          ? _value.favorText
+          : favorText // ignore: cast_nullable_to_non_nullable
+              as String,
+      favorDate: null == favorDate
+          ? _value.favorDate
+          : favorDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ReceivedFavorCopyWith<$Res> get receivedFavor {
-    return $ReceivedFavorCopyWith<$Res>(_value.receivedFavor, (value) {
-      return _then(_value.copyWith(receivedFavor: value) as $Val);
-    });
   }
 }
 
@@ -104,12 +100,10 @@ abstract class _$$RepaidFavorImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      ReceivedFavor receivedFavor,
-      String repaidText,
-      DateTime repaidDate});
-
-  @override
-  $ReceivedFavorCopyWith<$Res> get receivedFavor;
+      String receivedFavorId,
+      String favorText,
+      DateTime favorDate,
+      String memo});
 }
 
 /// @nodoc
@@ -124,27 +118,32 @@ class __$$RepaidFavorImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? receivedFavor = null,
-    Object? repaidText = null,
-    Object? repaidDate = null,
+    Object? receivedFavorId = null,
+    Object? favorText = null,
+    Object? favorDate = null,
+    Object? memo = null,
   }) {
     return _then(_$RepaidFavorImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      receivedFavor: null == receivedFavor
-          ? _value.receivedFavor
-          : receivedFavor // ignore: cast_nullable_to_non_nullable
-              as ReceivedFavor,
-      repaidText: null == repaidText
-          ? _value.repaidText
-          : repaidText // ignore: cast_nullable_to_non_nullable
+      receivedFavorId: null == receivedFavorId
+          ? _value.receivedFavorId
+          : receivedFavorId // ignore: cast_nullable_to_non_nullable
               as String,
-      repaidDate: null == repaidDate
-          ? _value.repaidDate
-          : repaidDate // ignore: cast_nullable_to_non_nullable
+      favorText: null == favorText
+          ? _value.favorText
+          : favorText // ignore: cast_nullable_to_non_nullable
+              as String,
+      favorDate: null == favorDate
+          ? _value.favorDate
+          : favorDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -153,30 +152,35 @@ class __$$RepaidFavorImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RepaidFavorImpl implements _RepaidFavor {
   _$RepaidFavorImpl(
-      {this.id = "",
-      required this.receivedFavor,
-      required this.repaidText,
-      required this.repaidDate});
+      {required this.id,
+      this.receivedFavorId = "",
+      required this.favorText,
+      required this.favorDate,
+      this.memo = ""});
 
   factory _$RepaidFavorImpl.fromJson(Map<String, dynamic> json) =>
       _$$RepaidFavorImplFromJson(json);
 
   @override
-  @JsonKey()
   final String id;
-// 返した恩のUUID（postのID）
+// この奉公の個別id
   @override
-  final ReceivedFavor receivedFavor;
-// 受けた恩のデータ
+  @JsonKey()
+  final String receivedFavorId;
+// 受けた恩のid
   @override
-  final String repaidText;
+  final String favorText;
 // 奉公のテキスト
   @override
-  final DateTime repaidDate;
+  final DateTime favorDate;
+// 奉公をした日時
+  @override
+  @JsonKey()
+  final String memo;
 
   @override
   String toString() {
-    return 'RepaidFavor(id: $id, receivedFavor: $receivedFavor, repaidText: $repaidText, repaidDate: $repaidDate)';
+    return 'RepaidFavor(id: $id, receivedFavorId: $receivedFavorId, favorText: $favorText, favorDate: $favorDate, memo: $memo)';
   }
 
   @override
@@ -185,18 +189,19 @@ class _$RepaidFavorImpl implements _RepaidFavor {
         (other.runtimeType == runtimeType &&
             other is _$RepaidFavorImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.receivedFavor, receivedFavor) ||
-                other.receivedFavor == receivedFavor) &&
-            (identical(other.repaidText, repaidText) ||
-                other.repaidText == repaidText) &&
-            (identical(other.repaidDate, repaidDate) ||
-                other.repaidDate == repaidDate));
+            (identical(other.receivedFavorId, receivedFavorId) ||
+                other.receivedFavorId == receivedFavorId) &&
+            (identical(other.favorText, favorText) ||
+                other.favorText == favorText) &&
+            (identical(other.favorDate, favorDate) ||
+                other.favorDate == favorDate) &&
+            (identical(other.memo, memo) || other.memo == memo));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, receivedFavor, repaidText, repaidDate);
+      Object.hash(runtimeType, id, receivedFavorId, favorText, favorDate, memo);
 
   @JsonKey(ignore: true)
   @override
@@ -214,22 +219,25 @@ class _$RepaidFavorImpl implements _RepaidFavor {
 
 abstract class _RepaidFavor implements RepaidFavor {
   factory _RepaidFavor(
-      {final String id,
-      required final ReceivedFavor receivedFavor,
-      required final String repaidText,
-      required final DateTime repaidDate}) = _$RepaidFavorImpl;
+      {required final String id,
+      final String receivedFavorId,
+      required final String favorText,
+      required final DateTime favorDate,
+      final String memo}) = _$RepaidFavorImpl;
 
   factory _RepaidFavor.fromJson(Map<String, dynamic> json) =
       _$RepaidFavorImpl.fromJson;
 
   @override
   String get id;
-  @override // 返した恩のUUID（postのID）
-  ReceivedFavor get receivedFavor;
-  @override // 受けた恩のデータ
-  String get repaidText;
+  @override // この奉公の個別id
+  String get receivedFavorId;
+  @override // 受けた恩のid
+  String get favorText;
   @override // 奉公のテキスト
-  DateTime get repaidDate;
+  DateTime get favorDate;
+  @override // 奉公をした日時
+  String get memo;
   @override
   @JsonKey(ignore: true)
   _$$RepaidFavorImplCopyWith<_$RepaidFavorImpl> get copyWith =>

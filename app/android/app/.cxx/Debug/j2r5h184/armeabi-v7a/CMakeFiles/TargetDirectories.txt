@@ -1,0 +1,2 @@
+/Users/ko_cha78/Documents/GitHub/yumemi-pg-hackathon-team2/app/android/app/.cxx/Debug/j2r5h184/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/ko_cha78/Documents/GitHub/yumemi-pg-hackathon-team2/app/android/app/.cxx/Debug/j2r5h184/armeabi-v7a/CMakeFiles/rebuild_cache.dir

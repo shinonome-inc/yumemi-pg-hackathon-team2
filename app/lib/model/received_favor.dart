@@ -9,9 +9,10 @@ const _uuid = Uuid();
 @freezed
 class ReceivedFavor with _$ReceivedFavor {
   factory ReceivedFavor({
-    @Default("") String id, // UUID
+    required String id, // この御恩の個別id
+    required String giverName, // 恩人の名前
     required String favorText, // 御恩のテキスト
-    required DateTime favorDate, // 御恩の日時
+    required DateTime favorDate, // 御恩を受けた日時
     @Default("") String memo, // メモ
   }) = _ReceivedFavor;
 

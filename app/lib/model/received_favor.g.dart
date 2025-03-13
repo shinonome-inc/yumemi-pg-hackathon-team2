@@ -8,7 +8,8 @@ part of 'received_favor.dart';
 
 _$ReceivedFavorImpl _$$ReceivedFavorImplFromJson(Map<String, dynamic> json) =>
     _$ReceivedFavorImpl(
-      id: json['id'] as String? ?? "",
+      id: json['id'] as String,
+      giverName: json['giverName'] as String,
       favorText: json['favorText'] as String,
       favorDate: DateTime.parse(json['favorDate'] as String),
       memo: json['memo'] as String? ?? "",
@@ -17,6 +18,7 @@ _$ReceivedFavorImpl _$$ReceivedFavorImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ReceivedFavorImplToJson(_$ReceivedFavorImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'giverName': instance.giverName,
       'favorText': instance.favorText,
       'favorDate': instance.favorDate.toIso8601String(),
       'memo': instance.memo,
