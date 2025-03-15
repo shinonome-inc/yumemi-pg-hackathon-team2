@@ -1,3 +1,7 @@
 
 # FVM Version Cache
 .fvm/
+
+# backend
+# virtualenv
+venv/
