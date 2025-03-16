@@ -48,7 +48,7 @@ jobs:
       - name: Build web
         run: |
           cd app
-          flutter build web --web-renderer html --base-href /${{ steps.version.outputs.repository }}/
+          flutter build web --base-href /${{ steps.version.outputs.repository }}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
