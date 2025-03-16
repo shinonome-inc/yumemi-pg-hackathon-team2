@@ -5,3 +5,6 @@
 # backend
 # virtualenv
 venv/
+
+# DB
+instance/
