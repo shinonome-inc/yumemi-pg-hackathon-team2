@@ -8,3 +8,8 @@ venv/
 
 # DB
 instance/
+
+# cache
+__pycache__/
+*.pyc
+*.pyo
