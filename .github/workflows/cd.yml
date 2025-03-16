@@ -1,32 +1,57 @@
-name: github pages
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
 
 on:
+  # Runs on pushes targeting the default branch
   push:
-    branches:
-      - main
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-18.04
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-
-      - name: setup flutter
-        uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-
-      - name: install
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Repository
+        id: version
         run: |
-          flutter config --enable-web
-          flutter pub get
-
-      - name: build
-        run: flutter build web
-
-      - name: deploy
-        uses: peaceiris/actions-gh-pages@v2.5.0
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./build/web
+          REPOSITORY=$(echo ${{ github.repository }} | sed -e "s#.*/##")
+          echo "repository=$REPOSITORY" >> $GITHUB_OUTPUT
+      - name: Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.1"
+          channel: "stable"
+          cache: true
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter build web --web-renderer html --base-href /${{ steps.version.outputs.repository }}/
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: "./build/web"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
