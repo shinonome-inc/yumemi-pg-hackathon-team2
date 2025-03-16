@@ -24,7 +24,7 @@ class _NavigationRootState extends State<NavigationRoot> {
     final List<Widget> widgetOptions = <Widget>[
       const HomePage(),
       const SharePage(),
-      const SettingPage(),
+      // const SettingPage(),
     ];
 
     return Scaffold(
@@ -42,10 +42,10 @@ class _NavigationRootState extends State<NavigationRoot> {
             icon: Icon(Icons.public),
             label: '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.settings),
+          //   label: '',
+          // ),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTap,
