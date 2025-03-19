@@ -16,6 +16,7 @@ class RepaidFavorList extends ConsumerWidget {
       data: (receivedData) {
         return repaidFavors.when(
           data: (repaidData) => ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             itemCount: repaidData.length,
             itemBuilder: (context, index) {
               final favor = repaidData[index];
@@ -29,18 +30,23 @@ class RepaidFavorList extends ConsumerWidget {
                 ),
               );
 
-              return ListTile(
-                title: Text(favor.favorText),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("奉公日: ${favor.favorDate.toLocal()}"),
-                    const SizedBox(height: 8),
-                    Text("【紐づく御恩】"),
-                    Text("恩人: ${linkedReceivedFavor.giverName}"),
-                    Text("内容: ${linkedReceivedFavor.favorText}"),
-                    Text("受けた日: ${linkedReceivedFavor.favorDate.toLocal()}"),
-                  ],
+              return Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: ListTile(
+                  title: Text(favor.favorText),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("奉公日: ${favor.favorDate.toLocal()}"),
+                      const SizedBox(height: 8),
+                      Text("【紐づく御恩】"),
+                      Text("恩人: ${linkedReceivedFavor.giverName}"),
+                      Text("内容: ${linkedReceivedFavor.favorText}"),
+                      Text("受けた日: ${linkedReceivedFavor.favorDate.toLocal()}"),
+                    ],
+                  ),
                 ),
               );
             },
