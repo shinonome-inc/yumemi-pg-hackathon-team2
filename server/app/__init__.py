@@ -20,3 +20,11 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 # DB接続の初期化
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+# modelsディレクトリ内のモデルをインポート
+from .models.user_models import User  # ユーザーモデル
+from .models.record_models import Record  # 記録モデル
+
+# viewをインポート
+from .user_views import *
+from .record_views import *
