@@ -1,5 +1,4 @@
 import 'package:app/page/home/home_page.dart';
-import 'package:app/page/setting/setting_page.dart';
 import 'package:app/page/share/share_page.dart';
 import 'package:flutter/material.dart';
 
@@ -30,25 +29,16 @@ class _NavigationRootState extends State<NavigationRoot> {
     return Scaffold(
       body: IndexedStack(index: _selectedIndex, children: widgetOptions),
       bottomNavigationBar: BottomNavigationBar(
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.public),
-            label: '',
-          ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.settings),
-          //   label: '',
-          // ),
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "ホーム"),
+          BottomNavigationBarItem(icon: Icon(Icons.language), label: "みんな"),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTap,
+        iconSize: 30,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.orange,
+        unselectedItemColor: Colors.grey,
       ),
     );
   }
