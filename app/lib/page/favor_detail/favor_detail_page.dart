@@ -1,6 +1,3 @@
-// yujiさんに作って欲しい
-// https://www.figma.com/board/4OZSx7cQFATeWCgd7sjpIv/yumemi_hackathon_team2?node-id=64-978&t=Fmsfov1FFf4YroGO-0
-
 import 'package:app/component/favor_add_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:app/model/received_favor.dart';
@@ -13,47 +10,162 @@ class FavorDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("受けた恩の詳細")),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 20),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: const Text(
+          '受けた恩の詳細',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          TextButton(
+            onPressed: () {
+              // 編集機能の実装
+            },
+            child: const Text(
+              '編集',
+              style: TextStyle(
+                color: Colors.orange,
+                fontSize: 14,
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "恩人: ${favor.giverName}",
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "内容: ${favor.favorText}",
-              style: const TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "メモ: ${favor.memo}",
-              style: const TextStyle(color: Colors.grey),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "受けた日: ${favor.favorDate.toLocal()}",
-              style: const TextStyle(color: Colors.grey),
-            ),
-            const Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => FavorAddModal(
-                    type: FavorType.repaid,
-                    receivedFavorId: favor.id,
+            // プロフィール部分
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.orange[200],
+                  child: const Icon(
+                    Icons.person_outline,
+                    size: 40,
+                    color: Colors.white,
                   ),
-                );
-              },
-              child: const Text("恩を返す"),
+                ),
+                const SizedBox(width: 16),
+                Text(
+                  favor.giverName,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            
+            // 「してもらったこと」ラベル
+            const Text(
+              'してもらったこと',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 8),
+            
+            // 恩の内容
+            Text(
+              favor.favorText,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 12),
+            
+            // 日付
+            Text(
+              _formatDate(favor.favorDate),
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 24),
+            
+            // 区切り線
+            const Divider(
+              height: 1,
+              thickness: 1,
+              color: Color(0xFFEEEEEE),
+            ),
+            const SizedBox(height: 24),
+            
+            // メモ
+            const Text(
+              'メモ',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              favor.memo ?? '',
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            
+            // 下部のスペースを埋める
+            const Spacer(),
+            
+            // 報恩するボタン
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => FavorAddModal(
+                      type: FavorType.repaid,
+                      receivedFavorId: favor.id,
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text(
+                  '報恩する',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  // 日付のフォーマット関数
+  String _formatDate(DateTime date) {
+    final List<String> weekdays = ['月', '火', '水', '木', '金', '土', '日'];
+    final int weekdayIndex = date.weekday - 1; // 月曜が0、日曜が6
+    
+    return '${date.year}年 ${date.month}月${date.day}日 ${weekdays[weekdayIndex]}曜日';
   }
 }
