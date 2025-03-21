@@ -3,12 +3,6 @@ import 'package:app/page/home/repaid_favor_list.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void main() {
-  final app = MaterialApp(home: HomePage());
-  final scope = ProviderScope(child: app);
-  runApp(scope);
-}
-
 final StateProvider<int> giveTakeProvider = StateProvider<int>((ref) {
   return 0;
 });
