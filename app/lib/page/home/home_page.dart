@@ -13,10 +13,6 @@ final StateProvider<int> giveTakeProvider = StateProvider<int>((ref) {
   return 0;
 });
 
-final StateProvider<int> homeEveryProvider = StateProvider<int>((ref) {
-  return 0;
-});
-
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
@@ -24,7 +20,6 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final int topBarIndex = ref.watch(giveTakeProvider);
     final Color topBarColor = [Colors.orange, Colors.blue][topBarIndex];
-    final int bottomNavigationBarIndex = ref.watch(homeEveryProvider);
 
     return DefaultTabController(
       length: 2,
@@ -88,20 +83,6 @@ class HomePage extends ConsumerWidget {
             ReceivedFavorList(),
             RepaidFavorList(),
           ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "ホーム"),
-            BottomNavigationBarItem(icon: Icon(Icons.language), label: "みんな"),
-          ],
-          currentIndex: bottomNavigationBarIndex,
-          onTap: (index) {
-            ref.read(homeEveryProvider.notifier).state = index;
-          },
-          iconSize: 30,
-          backgroundColor: Colors.white,
-          selectedItemColor: Colors.orange,
-          unselectedItemColor: Colors.grey,
         ),
       ),
     );

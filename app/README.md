@@ -35,9 +35,10 @@ FVMのインストールは以下のリンクを参考にしてください。
 `dart run build_runner watch --delete-conflicting-outputs`
 
 ## 3. アプリの起動
-fvm flutter run
+`fvm flutter run`
 
 端末はChrome等のブラウザを選択してください！
 
-//workflow実行テスト用メモ
-//PR提出用
+## 4. モックサーバーの起動
+`node server.js`
+で実行できます。諸々のインストールが必要だと思うのでよろしくお願いします。
