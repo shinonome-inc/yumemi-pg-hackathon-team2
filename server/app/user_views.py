@@ -25,7 +25,7 @@ def create_user():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route("/users/delete", methods=["DELETE"])
+@app.route("/user/delete", methods=["DELETE"])
 def delete_user(user_id):
     user = User.query.get(user_id)
     if not user:
@@ -85,4 +85,31 @@ def get_unreturned_favor_ranking():
         return jsonify(ranked_users)
 
     except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/user/update", methods=["PUT"])
+def update_user_counts():
+    data = request.get_json()
+    
+    if not data or "user_id" not in data:
+        return jsonify({"error": "ユーザーIDは必須です"}), 400
+    
+    user_id = data["user_id"]
+    user = User.query.get(user_id)
+    
+    if not user:
+        return jsonify({"error": "ユーザーが見つかりません"}), 404
+    
+    if "received_favor_count" in data:
+        user.received_favor_count = data["received_favor_count"]
+    
+    if "repaid_favor_count" in data:
+        user.repaid_favor_count = data["repaid_favor_count"]
+    
+    try:
+        db.session.commit()
+        return "", 204
+    except Exception as e:
+        db.session.rollback()
         return jsonify({"error": str(e)}), 500
