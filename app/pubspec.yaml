@@ -68,6 +68,14 @@ dev_dependencies:
   custom_lint:
   riverpod_lint:
   json_serializable:
+  flutter_native_splash:
+
+flutter_native_splash:
+  color: "#FDF5F2"
+  image: "assets/images/icon.png"
+  color_dark: "#262626"
+  image_dark: "assets/images/icon.png"
+  fullscreen: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
