@@ -6,24 +6,27 @@ part 'user_notifier.g.dart';
 
 @riverpod
 class UserNotifier extends _$UserNotifier {
+  // SharedPreferencesにユーザー情報がなければ作成
   @override
   Future<User?> build() async {
     final repo = ref.read(userRepositoryProvider);
-    return await repo.loadUser();
+
+    final existingUser = await repo.loadUser();
+    if (existingUser != null) {
+      return existingUser;
+    }
+
+    final newUser = await repo.createUser('名無し');
+    return newUser;
   }
 
-  /// ローディング中にユーザーを作成して保存するメソッド
   Future<void> createUser(String username) async {
-    // 通信や保存に時間がかかるので、一旦 loading 状態に
     state = const AsyncValue.loading();
-
     try {
       final repo = ref.read(userRepositoryProvider);
       final user = await repo.createUser(username);
-      // 成功したら user を通知
       state = AsyncValue.data(user);
     } catch (e, st) {
-      // エラー時
       state = AsyncValue.error(e, st);
     }
   }

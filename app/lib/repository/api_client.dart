@@ -34,14 +34,22 @@ class ApiClient {
   }
 
   Future<User> createUser(String username) async {
-    // 例えばエンドポイントが POST /users だった場合
     final response = await _dio.post(
-      '/users',
+      '/user/create/',
       data: {'username': username},
     );
 
     final data = response.data as Map<String, dynamic>;
-    // user_id, username を含むJSONが返却される想定
+    return User.fromJson(data);
+  }
+
+  Future<User> updateUser(String userId, String newUsername) async {
+    final response = await _dio.put(
+      '/user/update/$userId',
+      data: {'username': newUsername},
+    );
+
+    final data = response.data as Map<String, dynamic>;
     return User.fromJson(data);
   }
 }
