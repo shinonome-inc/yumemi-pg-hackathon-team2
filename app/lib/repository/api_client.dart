@@ -1,4 +1,5 @@
 import 'package:app/model/share_favor.dart';
+import 'package:app/model/user.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -30,6 +31,18 @@ class ApiClient {
 
     final nextCursor = data['nextCursor'] as String?;
     return ApiResponse(items: items, nextCursor: nextCursor);
+  }
+
+  Future<User> createUser(String username) async {
+    // 例えばエンドポイントが POST /users だった場合
+    final response = await _dio.post(
+      '/users',
+      data: {'username': username},
+    );
+
+    final data = response.data as Map<String, dynamic>;
+    // user_id, username を含むJSONが返却される想定
+    return User.fromJson(data);
   }
 }
 
