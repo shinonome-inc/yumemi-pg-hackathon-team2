@@ -23,3 +23,18 @@ def create_record():
     db.session.commit()
 
     return jsonify({"record_id": new_record.id}), 201
+
+
+@app.route("/record/delete", methods=["POST"])
+def delete_record():
+    data = request.get_json()
+    record_id = data.get("recordID")
+
+    record = Record.query.get(record_id)
+    if not record:
+        return jsonify({"error": "Record not found"}), 404
+
+    db.session.delete(record)
+    db.session.commit()
+
+    return jsonify({"message": "Record deleted successfully"}), 200
