@@ -113,3 +113,28 @@ def update_user_counts():
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
+
+
+@app.route("/user/changename", methods=["PUT"])
+def change_user_name():
+    data = request.get_json()
+    
+    if not data or "user_id" not in data or "user_name" not in data:
+        return jsonify({"error": "ユーザーIDとユーザー名は必須です"}), 400
+    
+    user_id = data["user_id"]
+    new_user_name = data["user_name"]
+    
+    user = User.query.get(user_id)
+    
+    if not user:
+        return jsonify({"error": "ユーザーが見つかりません"}), 404
+    
+    user.user_name = new_user_name
+    
+    try:
+        db.session.commit()
+        return "", 204
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
