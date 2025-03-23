@@ -93,7 +93,7 @@ class UsernameEditPage extends HookConsumerWidget {
             ),
             const SizedBox(height: 8),
             const Text(
-              '名前が公開されます。あとでいつでも変更可能です。',
+              '名前が公開されます。',
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
             const SizedBox(height: 32),
