@@ -121,6 +121,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
         ),
         child: SafeArea(
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Container(
               padding: const EdgeInsets.all(20),
               child: Column(
