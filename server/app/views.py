@@ -57,39 +57,25 @@ def get_unreturned_favor_ranking():
     try:
         users_data = []
 
-        user_ids = db.session.query(Record.user_id).distinct().all()
+        # userテーブルからすべてのユーザーを取得
+        users = db.session.query(User).all()
 
-        for (user_id,) in user_ids:
-            received_count = (
-                db.session.query(func.count(Record.id))
-                .filter(Record.user_id == user_id)
-                .scalar()
-                or 0
-            )
-
-            unreturned_count = (
-                db.session.query(func.count(Record.id))
-                .filter(Record.user_id == user_id, Record.repaid_favor_text == None)
-                .scalar()
-                or 0
-            )
-
-            returned_count = received_count - unreturned_count
-
+        for user in users:
+            # Userテーブル内の情報を使用
+            received_count = user.received_favor_count
+            repaid_count = user.repaid_favor_count
+            
+            # 返していない恩の割合を計算
             unreturned_ratio = 0
             if received_count > 0:
-                unreturned_ratio = (unreturned_count / received_count) * 100
+                unreturned_ratio = (repaid_count / received_count) * 100
 
-            users_data.append(
-                {
-                    "user_id": user_id,
-                    "received_favor_count": received_count,
-                    "returned_favor_count": returned_count,
-                    "unreturned_favor_count": unreturned_count,
-                    "unreturned_ratio": round(unreturned_ratio, 2),
-                }
-            )
+            users_data.append({
+                "username": user.user_name,
+                "unreturned_ratio": round(unreturned_ratio, 2)
+            })
 
+        # 返していない恩の割合が高い順にソート
         ranked_users = sorted(
             users_data, key=lambda x: x["unreturned_ratio"], reverse=True
         )

@@ -1,8 +1,8 @@
-"""Add new columns to User and Record
+"""create user table
 
-Revision ID: a73fba0dc9cd
+Revision ID: 0cbae934e914
 Revises: 
-Create Date: 2025-03-16 14:26:33.507937
+Create Date: 2025-03-23 14:24:35.267341
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a73fba0dc9cd'
+revision = '0cbae934e914'
 down_revision = None
 branch_labels = None
 depends_on = None
