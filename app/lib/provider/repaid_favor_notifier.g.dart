@@ -7,7 +7,7 @@ part of 'repaid_favor_notifier.dart';
 // **************************************************************************
 
 String _$repaidFavorNotifierHash() =>
-    r'3842e38ae8cc7a5d34d04dad9639cea61496c5a1';
+    r'063e1e93c0b3b0e575822961552f5c0bb532b8bc';
 
 /// See also [RepaidFavorNotifier].
 @ProviderFor(RepaidFavorNotifier)

@@ -9,13 +9,18 @@ const _uuid = Uuid();
 @freezed
 class ShareFavor with _$ShareFavor {
   factory ShareFavor({
-    required String userId, // ユーザーID
-    required String userName, // ユーザー名
-    required String id, // この投稿の個別id
+    @JsonKey(name: 'user_id') required int userId, // ユーザーID
+    @JsonKey(name: 'user_name') required String userName, // ユーザー名
+    @JsonKey(name: 'id') required int id, // 投稿の個別ID
+    @JsonKey(name: 'received_favor_text')
     required String receivedFavorText, // 御恩のテキスト
+    @JsonKey(name: 'received_favor_date')
     required DateTime receivedFavorDate, // 御恩の日時
-    required String repaidFavorText, // 御恩のテキスト
-    required DateTime repaiedFavorDate, // 御恩の日時
+    @JsonKey(name: 'repaid_favor_text')
+    required String repaidFavorText, // 恩返しのテキスト
+    @JsonKey(name: 'repaid_favor_date')
+    required DateTime repaiedFavorDate, // 恩返しの日時
+    @JsonKey(name: 'memo') String? memo, // 任意メモ
   }) = _ShareFavor;
 
   factory ShareFavor.fromJson(Map<String, dynamic> json) =>

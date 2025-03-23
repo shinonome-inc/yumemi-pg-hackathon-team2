@@ -6,7 +6,7 @@ part of 'share_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$shareRepositoryHash() => r'6e05f80f3c15fc30c797771de99c2e7c7ab2e21c';
+String _$shareRepositoryHash() => r'5c489c4cccc93e77a9937407783b1eb24198988f';
 
 /// See also [shareRepository].
 @ProviderFor(shareRepository)

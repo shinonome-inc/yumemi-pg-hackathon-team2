@@ -34,9 +34,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons:
-  flutter_hooks:
+  flutter_hooks: 
   hooks_riverpod:
   riverpod_annotation:
+  table_calendar: 
 
   state_notifier:
 
@@ -44,14 +45,14 @@ dependencies:
 
   shared_preferences:
 
-  intl:
+  intl: 
 
   webview_flutter:
   uuid:
   freezed_annotation:
   json_annotation:
-  riverpod_paging_utils: ^0.7.0
   settings_ui: ^2.0.2
+  riverpod_paging_utils: 
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +69,7 @@ dev_dependencies:
   riverpod_generator:
   custom_lint:
   riverpod_lint:
-  json_serializable:
+  json_serializable: ^6.9.4
   flutter_native_splash:
 
 flutter_native_splash:
