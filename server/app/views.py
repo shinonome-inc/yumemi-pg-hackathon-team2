@@ -4,6 +4,7 @@ from app.models.user_models import User
 from app.models.record_models import Record
 from flask import request, jsonify
 from sqlalchemy import func
+from datetime import datetime
 
 
 @app.route("/")
@@ -143,13 +144,17 @@ def create_record():
     data = request.get_json()
 
     new_record = Record(
-        user_id=data.get("userID"),
-        received_favor_text=data.get("receivedFavorText"),
-        received_favor_date=data.get("receivedFavorDate"),
-        giver_name=data.get("giverName"),
-        repaid_favor_text=data.get("repaidFavorText"),
-        repaid_favor_date=data.get("repaidFavorDate"),
-        memo=data.get("memo"),
+        user_id=data["user_id"],
+        received_favor_text=data["received_favor_text"],
+        received_favor_date=datetime.strptime(
+            data["received_favor_date"], "%Y-%m-%d %H:%M:%S"
+        ),
+        giver_name=data["giver_name"],
+        repaid_favor_text=data["repaid_favor_text"],
+        repaid_favor_date=datetime.strptime(
+            data["repaid_favor_date"], "%Y-%m-%d %H:%M:%S"
+        ),
+        memo=data["memo"],
     )
 
     db.session.add(new_record)
@@ -158,10 +163,10 @@ def create_record():
     return jsonify({"record_id": new_record.id}), 201
 
 
-@app.route("/record/delete", methods=["POST"])
+@app.route("/record/delete", methods=["DELETE"])
 def delete_record():
     data = request.get_json()
-    record_id = data.get("recordID")
+    record_id = data.get("record_id")
 
     record = Record.query.get(record_id)
     if not record:
