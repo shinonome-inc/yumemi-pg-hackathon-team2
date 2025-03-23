@@ -8,6 +8,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
 
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+
 # import os
 
 app = Flask(__name__)
@@ -16,6 +19,7 @@ CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+app.config["SECRET_KEY"] = ""  # secretkeyを各自設定
 
 # DB接続の初期化
 db = SQLAlchemy(app)
@@ -28,6 +32,13 @@ from .models.record_models import Record  # 記録モデル
 # viewをインポート
 from .views import *
 
+
+# Flask-Admin のセットアップ
+admin = Admin(app, name="管理画面", template_mode="bootstrap3")
+
+# モデルを Flask-Admin に登録
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Record, db.session))
 
 # @app.route("/")
 # def index():
