@@ -87,7 +87,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                             id: UuidUtils.generateUuid(),
                             giverName: nameText,
                             favorText: favorText,
-                            favorDate: DateTime.now(),
+                            favorDate: selectedDate,
                             memo: memoText,
                           ),
                         );
@@ -99,7 +99,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                             id: UuidUtils.generateUuid(),
                             receivedFavorId: widget.receivedFavorId!,
                             favorText: favorText,
-                            favorDate: DateTime.now(),
+                            favorDate: selectedDate,
                             memo: memoText,
                           ),
                         );
@@ -175,7 +175,6 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                   ),
                   const SizedBox(height: 16),
 
-                  // 日付選択後にカレンダーを下に表示
                   if (showCalendar)
                     Column(
                       children: [
