@@ -206,6 +206,6 @@ def get_records():
         for record in records
     ]
 
-    next_cursor = records[-1].id if records else None
+    next_cursor = str(records[-1].id) if records else None
 
     return jsonify({"items": items, "nextCursor": next_cursor})
