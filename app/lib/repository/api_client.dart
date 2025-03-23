@@ -1,4 +1,5 @@
 import 'package:app/model/share_favor.dart';
+import 'package:app/model/user.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -30,6 +31,26 @@ class ApiClient {
 
     final nextCursor = data['nextCursor'] as String?;
     return ApiResponse(items: items, nextCursor: nextCursor);
+  }
+
+  Future<User> createUser(String username) async {
+    final response = await _dio.post(
+      '/user/create/',
+      data: {'username': username},
+    );
+
+    final data = response.data as Map<String, dynamic>;
+    return User.fromJson(data);
+  }
+
+  Future<User> updateUser(String userId, String newUsername) async {
+    final response = await _dio.put(
+      '/user/update/$userId',
+      data: {'username': newUsername},
+    );
+
+    final data = response.data as Map<String, dynamic>;
+    return User.fromJson(data);
   }
 }
 

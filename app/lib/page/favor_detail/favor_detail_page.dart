@@ -70,7 +70,7 @@ class FavorDetailPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
-            
+
             // 「してもらったこと」ラベル
             const Text(
               'してもらったこと',
@@ -80,7 +80,7 @@ class FavorDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            
+
             // 恩の内容
             Text(
               favor.favorText,
@@ -90,7 +90,7 @@ class FavorDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            
+
             // 日付
             Text(
               _formatDate(favor.favorDate),
@@ -100,7 +100,7 @@ class FavorDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            
+
             // 区切り線
             const Divider(
               height: 1,
@@ -108,7 +108,7 @@ class FavorDetailPage extends StatelessWidget {
               color: Color(0xFFEEEEEE),
             ),
             const SizedBox(height: 24),
-            
+
             // メモ
             const Text(
               'メモ',
@@ -124,10 +124,10 @@ class FavorDetailPage extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            
+
             // 下部のスペースを埋める
             const Spacer(),
-            
+
             // 報恩するボタン
             SizedBox(
               width: double.infinity,
@@ -142,11 +142,11 @@ class FavorDetailPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Color(0xFF689EDC),
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 child: const Text(
@@ -165,7 +165,7 @@ class FavorDetailPage extends StatelessWidget {
   String _formatDate(DateTime date) {
     final List<String> weekdays = ['月', '火', '水', '木', '金', '土', '日'];
     final int weekdayIndex = date.weekday - 1; // 月曜が0、日曜が6
-    
+
     return '${date.year}年 ${date.month}月${date.day}日 ${weekdays[weekdayIndex]}曜日';
   }
 }
