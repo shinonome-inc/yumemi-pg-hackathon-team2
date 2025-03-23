@@ -193,13 +193,17 @@ def get_records():
 
     items = [
         {
-            "userId": record.user_id,
-            "userName": record.user.user_name,  # userテーブルにnameカラムがある前提
+            "user_id": record.user_id,
+            "user_name": record.user.user_name,  # userテーブルにnameカラムがある前提
             "id": record.id,
-            "receivedFavorText": record.received_favor_text,
-            "receivedFavorDate": record.received_favor_date,
-            "repaidFavorText": record.repaid_favor_text,
-            "repaiedFavorDate": record.repaid_favor_date,
+            "received_favor_text": record.received_favor_text,
+            "received_favor_date": record.received_favor_date.strftime(
+                "%a, %d %b %Y %H:%M:%S GMT"
+            ),
+            "repaid_favor_text": record.repaid_favor_text,
+            "repaid_favor_date": record.repaid_favor_date.strftime(
+                "%a, %d %b %Y %H:%M:%S GMT"
+            ),
         }
         for record in records
     ]
