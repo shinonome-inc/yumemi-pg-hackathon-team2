@@ -31,4 +31,9 @@ class ReceivedFavorNotifier extends _$ReceivedFavorNotifier {
     await _storage.clearReceivedFavors();
     state = AsyncData([]);
   }
+
+  Future<int> getReceivedFavorCount() async {
+    final currentFavors = await _storage.loadReceivedFavors();
+    return currentFavors.length;
+  }
 }

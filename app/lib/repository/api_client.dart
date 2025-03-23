@@ -1,15 +1,16 @@
 import 'package:app/model/share_favor.dart';
 import 'package:app/model/user.dart';
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'api_client.g.dart';
 
 @riverpod
-ApiClient apiClient(ApiClientRef ref) => ApiClient();
+ApiClient apiClient(Ref ref) => ApiClient();
 
 class ApiClient {
-  final Dio _dio = Dio(BaseOptions(baseUrl: 'http://localhost:3000/'))
+  final Dio _dio = Dio(BaseOptions(baseUrl: 'http://127.0.0.1:5000/'))
     ..interceptors.add(LogInterceptor(
       request: true,
       requestBody: true,
@@ -20,8 +21,9 @@ class ApiClient {
     ));
 
   Future<ApiResponse> getByCursor(String? cursor) async {
+    cursor ??= '0';
     final response =
-        await _dio.get('/share-favors', queryParameters: {'cursor': cursor});
+        await _dio.get('/records', queryParameters: {'cursor': cursor});
 
     final data = response.data as Map<String, dynamic>;
 
@@ -35,22 +37,41 @@ class ApiClient {
 
   Future<User> createUser(String username) async {
     final response = await _dio.post(
-      '/user/create/',
-      data: {'username': username},
+      '/user/create',
+      data: {'user_name': username},
+    );
+
+    final data = response.data as Map<String, dynamic>;
+
+    return User.fromJson(data);
+  }
+
+  Future<User> updateUser(String userId, String newUsername) async {
+    final response = await _dio.put(
+      '/user/changename',
+      data: {
+        'user_id': userId,
+        'user_name': newUsername,
+      },
     );
 
     final data = response.data as Map<String, dynamic>;
     return User.fromJson(data);
   }
 
-  Future<User> updateUser(String userId, String newUsername) async {
-    final response = await _dio.put(
-      '/user/update/$userId',
-      data: {'username': newUsername},
+  Future<void> updateFavorCounts({
+    required int userId,
+    required int receivedFavorCount,
+    required int repaidFavorCount,
+  }) async {
+    await _dio.put(
+      '/user/update',
+      data: {
+        'user_id': userId,
+        'received_favor_count': receivedFavorCount,
+        'repaid_favor_count': repaidFavorCount,
+      },
     );
-
-    final data = response.data as Map<String, dynamic>;
-    return User.fromJson(data);
   }
 }
 

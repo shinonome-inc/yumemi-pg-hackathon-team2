@@ -67,7 +67,7 @@ dev_dependencies:
   riverpod_generator:
   custom_lint:
   riverpod_lint:
-  json_serializable:
+  json_serializable: ^6.9.4
   flutter_native_splash:
 
 flutter_native_splash:

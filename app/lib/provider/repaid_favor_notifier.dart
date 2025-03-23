@@ -31,4 +31,9 @@ class RepaidFavorNotifier extends _$RepaidFavorNotifier {
     await _storage.clearRepaidFavors();
     state = AsyncData([]);
   }
+
+  Future<int> getRepaidFavorCount() async {
+    final currentFavors = await _storage.loadRepaidFavors();
+    return currentFavors.length;
+  }
 }

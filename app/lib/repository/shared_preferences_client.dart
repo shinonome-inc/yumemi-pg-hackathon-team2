@@ -8,7 +8,7 @@ class SharedPreferencesClient {
   static const _receivedFavorsKey = 'received_favors';
   static const _repaidFavorsKey = 'repaid_favors';
   static const _userIdKey = 'user_id';
-  static const _usernameKey = 'username';
+  static const _userNameKey = 'userName';
 
   /// 受けた恩の保存・取得
   Future<void> saveReceivedFavors(List<ReceivedFavor> favors) async {
@@ -53,24 +53,24 @@ class SharedPreferencesClient {
   /// ユーザー情報の保存・取得
   Future<void> saveUserInfo(User user) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_userIdKey, user.userId);
-    await prefs.setString(_usernameKey, user.username);
+    await prefs.setInt(_userIdKey, user.userId);
+    await prefs.setString(_userNameKey, user.userName);
   }
 
   Future<User?> loadUserInfo() async {
     final prefs = await SharedPreferences.getInstance();
-    final userId = prefs.getString(_userIdKey);
-    final username = prefs.getString(_usernameKey);
+    final userId = prefs.getInt(_userIdKey);
+    final userName = prefs.getString(_userNameKey);
 
-    if (userId == null || username == null) {
+    if (userId == null || userName == null) {
       return null;
     }
-    return User(userId: userId, username: username);
+    return User(userId: userId, userName: userName);
   }
 
   Future<void> clearUserInfo() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_userIdKey);
-    await prefs.remove(_usernameKey);
+    await prefs.remove(_userNameKey);
   }
 }
