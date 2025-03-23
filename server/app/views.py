@@ -194,7 +194,7 @@ def get_records():
     items = [
         {
             "userId": record.user_id,
-            "userName": record.user.name,  # userテーブルにnameカラムがある前提
+            "userName": record.user.user_name,  # userテーブルにnameカラムがある前提
             "id": record.id,
             "receivedFavorText": record.received_favor_text,
             "receivedFavorDate": record.received_favor_date,
