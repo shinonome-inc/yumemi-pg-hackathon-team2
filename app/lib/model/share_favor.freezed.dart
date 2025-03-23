@@ -20,13 +20,22 @@ ShareFavor _$ShareFavorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ShareFavor {
+  @JsonKey(name: 'user_id')
   int get userId => throw _privateConstructorUsedError; // ユーザーID
+  @JsonKey(name: 'user_name')
   String get userName => throw _privateConstructorUsedError; // ユーザー名
-  int get id => throw _privateConstructorUsedError; // この投稿の個別id
+  @JsonKey(name: 'id')
+  int get id => throw _privateConstructorUsedError; // 投稿の個別ID
+  @JsonKey(name: 'received_favor_text')
   String get receivedFavorText => throw _privateConstructorUsedError; // 御恩のテキスト
+  @JsonKey(name: 'received_favor_date')
   DateTime get receivedFavorDate => throw _privateConstructorUsedError; // 御恩の日時
-  String get repaidFavorText => throw _privateConstructorUsedError; // 御恩のテキスト
-  DateTime get repaiedFavorDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'repaid_favor_text')
+  String get repaidFavorText => throw _privateConstructorUsedError; // 恩返しのテキスト
+  @JsonKey(name: 'repaid_favor_date')
+  DateTime get repaiedFavorDate => throw _privateConstructorUsedError; // 恩返しの日時
+  @JsonKey(name: 'memo')
+  String? get memo => throw _privateConstructorUsedError;
 
   /// Serializes this ShareFavor to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,13 +54,14 @@ abstract class $ShareFavorCopyWith<$Res> {
       _$ShareFavorCopyWithImpl<$Res, ShareFavor>;
   @useResult
   $Res call(
-      {int userId,
-      String userName,
-      int id,
-      String receivedFavorText,
-      DateTime receivedFavorDate,
-      String repaidFavorText,
-      DateTime repaiedFavorDate});
+      {@JsonKey(name: 'user_id') int userId,
+      @JsonKey(name: 'user_name') String userName,
+      @JsonKey(name: 'id') int id,
+      @JsonKey(name: 'received_favor_text') String receivedFavorText,
+      @JsonKey(name: 'received_favor_date') DateTime receivedFavorDate,
+      @JsonKey(name: 'repaid_favor_text') String repaidFavorText,
+      @JsonKey(name: 'repaid_favor_date') DateTime repaiedFavorDate,
+      @JsonKey(name: 'memo') String? memo});
 }
 
 /// @nodoc
@@ -76,6 +86,7 @@ class _$ShareFavorCopyWithImpl<$Res, $Val extends ShareFavor>
     Object? receivedFavorDate = null,
     Object? repaidFavorText = null,
     Object? repaiedFavorDate = null,
+    Object? memo = freezed,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -106,6 +117,10 @@ class _$ShareFavorCopyWithImpl<$Res, $Val extends ShareFavor>
           ? _value.repaiedFavorDate
           : repaiedFavorDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      memo: freezed == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -119,13 +134,14 @@ abstract class _$$ShareFavorImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int userId,
-      String userName,
-      int id,
-      String receivedFavorText,
-      DateTime receivedFavorDate,
-      String repaidFavorText,
-      DateTime repaiedFavorDate});
+      {@JsonKey(name: 'user_id') int userId,
+      @JsonKey(name: 'user_name') String userName,
+      @JsonKey(name: 'id') int id,
+      @JsonKey(name: 'received_favor_text') String receivedFavorText,
+      @JsonKey(name: 'received_favor_date') DateTime receivedFavorDate,
+      @JsonKey(name: 'repaid_favor_text') String repaidFavorText,
+      @JsonKey(name: 'repaid_favor_date') DateTime repaiedFavorDate,
+      @JsonKey(name: 'memo') String? memo});
 }
 
 /// @nodoc
@@ -148,6 +164,7 @@ class __$$ShareFavorImplCopyWithImpl<$Res>
     Object? receivedFavorDate = null,
     Object? repaidFavorText = null,
     Object? repaiedFavorDate = null,
+    Object? memo = freezed,
   }) {
     return _then(_$ShareFavorImpl(
       userId: null == userId
@@ -178,6 +195,10 @@ class __$$ShareFavorImplCopyWithImpl<$Res>
           ? _value.repaiedFavorDate
           : repaiedFavorDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      memo: freezed == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -186,41 +207,53 @@ class __$$ShareFavorImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ShareFavorImpl implements _ShareFavor {
   _$ShareFavorImpl(
-      {required this.userId,
-      required this.userName,
-      required this.id,
-      required this.receivedFavorText,
-      required this.receivedFavorDate,
-      required this.repaidFavorText,
-      required this.repaiedFavorDate});
+      {@JsonKey(name: 'user_id') required this.userId,
+      @JsonKey(name: 'user_name') required this.userName,
+      @JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'received_favor_text') required this.receivedFavorText,
+      @JsonKey(name: 'received_favor_date') required this.receivedFavorDate,
+      @JsonKey(name: 'repaid_favor_text') required this.repaidFavorText,
+      @JsonKey(name: 'repaid_favor_date') required this.repaiedFavorDate,
+      @JsonKey(name: 'memo') this.memo});
 
   factory _$ShareFavorImpl.fromJson(Map<String, dynamic> json) =>
       _$$ShareFavorImplFromJson(json);
 
   @override
+  @JsonKey(name: 'user_id')
   final int userId;
 // ユーザーID
   @override
+  @JsonKey(name: 'user_name')
   final String userName;
 // ユーザー名
   @override
+  @JsonKey(name: 'id')
   final int id;
-// この投稿の個別id
+// 投稿の個別ID
   @override
+  @JsonKey(name: 'received_favor_text')
   final String receivedFavorText;
 // 御恩のテキスト
   @override
+  @JsonKey(name: 'received_favor_date')
   final DateTime receivedFavorDate;
 // 御恩の日時
   @override
+  @JsonKey(name: 'repaid_favor_text')
   final String repaidFavorText;
-// 御恩のテキスト
+// 恩返しのテキスト
   @override
+  @JsonKey(name: 'repaid_favor_date')
   final DateTime repaiedFavorDate;
+// 恩返しの日時
+  @override
+  @JsonKey(name: 'memo')
+  final String? memo;
 
   @override
   String toString() {
-    return 'ShareFavor(userId: $userId, userName: $userName, id: $id, receivedFavorText: $receivedFavorText, receivedFavorDate: $receivedFavorDate, repaidFavorText: $repaidFavorText, repaiedFavorDate: $repaiedFavorDate)';
+    return 'ShareFavor(userId: $userId, userName: $userName, id: $id, receivedFavorText: $receivedFavorText, receivedFavorDate: $receivedFavorDate, repaidFavorText: $repaidFavorText, repaiedFavorDate: $repaiedFavorDate, memo: $memo)';
   }
 
   @override
@@ -239,13 +272,22 @@ class _$ShareFavorImpl implements _ShareFavor {
             (identical(other.repaidFavorText, repaidFavorText) ||
                 other.repaidFavorText == repaidFavorText) &&
             (identical(other.repaiedFavorDate, repaiedFavorDate) ||
-                other.repaiedFavorDate == repaiedFavorDate));
+                other.repaiedFavorDate == repaiedFavorDate) &&
+            (identical(other.memo, memo) || other.memo == memo));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, userName, id,
-      receivedFavorText, receivedFavorDate, repaidFavorText, repaiedFavorDate);
+  int get hashCode => Object.hash(
+      runtimeType,
+      userId,
+      userName,
+      id,
+      receivedFavorText,
+      receivedFavorDate,
+      repaidFavorText,
+      repaiedFavorDate,
+      memo);
 
   /// Create a copy of ShareFavor
   /// with the given fields replaced by the non-null parameter values.
@@ -265,31 +307,45 @@ class _$ShareFavorImpl implements _ShareFavor {
 
 abstract class _ShareFavor implements ShareFavor {
   factory _ShareFavor(
-      {required final int userId,
-      required final String userName,
-      required final int id,
+      {@JsonKey(name: 'user_id') required final int userId,
+      @JsonKey(name: 'user_name') required final String userName,
+      @JsonKey(name: 'id') required final int id,
+      @JsonKey(name: 'received_favor_text')
       required final String receivedFavorText,
+      @JsonKey(name: 'received_favor_date')
       required final DateTime receivedFavorDate,
-      required final String repaidFavorText,
-      required final DateTime repaiedFavorDate}) = _$ShareFavorImpl;
+      @JsonKey(name: 'repaid_favor_text') required final String repaidFavorText,
+      @JsonKey(name: 'repaid_favor_date')
+      required final DateTime repaiedFavorDate,
+      @JsonKey(name: 'memo') final String? memo}) = _$ShareFavorImpl;
 
   factory _ShareFavor.fromJson(Map<String, dynamic> json) =
       _$ShareFavorImpl.fromJson;
 
   @override
+  @JsonKey(name: 'user_id')
   int get userId; // ユーザーID
   @override
+  @JsonKey(name: 'user_name')
   String get userName; // ユーザー名
   @override
-  int get id; // この投稿の個別id
+  @JsonKey(name: 'id')
+  int get id; // 投稿の個別ID
   @override
+  @JsonKey(name: 'received_favor_text')
   String get receivedFavorText; // 御恩のテキスト
   @override
+  @JsonKey(name: 'received_favor_date')
   DateTime get receivedFavorDate; // 御恩の日時
   @override
-  String get repaidFavorText; // 御恩のテキスト
+  @JsonKey(name: 'repaid_favor_text')
+  String get repaidFavorText; // 恩返しのテキスト
   @override
-  DateTime get repaiedFavorDate;
+  @JsonKey(name: 'repaid_favor_date')
+  DateTime get repaiedFavorDate; // 恩返しの日時
+  @override
+  @JsonKey(name: 'memo')
+  String? get memo;
 
   /// Create a copy of ShareFavor
   /// with the given fields replaced by the non-null parameter values.

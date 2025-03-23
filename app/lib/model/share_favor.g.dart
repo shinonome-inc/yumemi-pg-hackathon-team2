@@ -8,22 +8,24 @@ part of 'share_favor.dart';
 
 _$ShareFavorImpl _$$ShareFavorImplFromJson(Map<String, dynamic> json) =>
     _$ShareFavorImpl(
-      userId: (json['userId'] as num).toInt(),
-      userName: json['userName'] as String,
+      userId: (json['user_id'] as num).toInt(),
+      userName: json['user_name'] as String,
       id: (json['id'] as num).toInt(),
-      receivedFavorText: json['receivedFavorText'] as String,
-      receivedFavorDate: DateTime.parse(json['receivedFavorDate'] as String),
-      repaidFavorText: json['repaidFavorText'] as String,
-      repaiedFavorDate: DateTime.parse(json['repaiedFavorDate'] as String),
+      receivedFavorText: json['received_favor_text'] as String,
+      receivedFavorDate: DateTime.parse(json['received_favor_date'] as String),
+      repaidFavorText: json['repaid_favor_text'] as String,
+      repaiedFavorDate: DateTime.parse(json['repaid_favor_date'] as String),
+      memo: json['memo'] as String?,
     );
 
 Map<String, dynamic> _$$ShareFavorImplToJson(_$ShareFavorImpl instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
-      'userName': instance.userName,
+      'user_id': instance.userId,
+      'user_name': instance.userName,
       'id': instance.id,
-      'receivedFavorText': instance.receivedFavorText,
-      'receivedFavorDate': instance.receivedFavorDate.toIso8601String(),
-      'repaidFavorText': instance.repaidFavorText,
-      'repaiedFavorDate': instance.repaiedFavorDate.toIso8601String(),
+      'received_favor_text': instance.receivedFavorText,
+      'received_favor_date': instance.receivedFavorDate.toIso8601String(),
+      'repaid_favor_text': instance.repaidFavorText,
+      'repaid_favor_date': instance.repaiedFavorDate.toIso8601String(),
+      'memo': instance.memo,
     };
