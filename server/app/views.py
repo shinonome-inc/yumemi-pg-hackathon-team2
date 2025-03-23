@@ -26,7 +26,7 @@ def create_user():
     try:
         db.session.add(new_user)
         db.session.commit()
-        return "", 204
+        return jsonify({"user_id": new_user.id, "user_name": new_user.user_name}), 201
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
@@ -65,16 +65,18 @@ def get_unreturned_favor_ranking():
             # Userテーブル内の情報を使用
             received_count = user.received_favor_count
             repaid_count = user.repaid_favor_count
-            
+
             # 返していない恩の割合を計算
             unreturned_ratio = 0
             if received_count > 0:
                 unreturned_ratio = (repaid_count / received_count) * 100
 
-            users_data.append({
-                "username": user.user_name,
-                "unreturned_ratio": round(unreturned_ratio, 2)
-            })
+            users_data.append(
+                {
+                    "username": user.user_name,
+                    "unreturned_ratio": round(unreturned_ratio, 2),
+                }
+            )
 
         # 返していない恩の割合が高い順にソート
         ranked_users = sorted(
