@@ -9,9 +9,9 @@ const _uuid = Uuid();
 @freezed
 class ShareFavor with _$ShareFavor {
   factory ShareFavor({
-    required String userId, // ユーザーID
+    required int userId, // ユーザーID
     required String userName, // ユーザー名
-    required String id, // この投稿の個別id
+    required int id, // この投稿の個別id
     required String receivedFavorText, // 御恩のテキスト
     required DateTime receivedFavorDate, // 御恩の日時
     required String repaidFavorText, // 御恩のテキスト

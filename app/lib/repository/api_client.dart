@@ -10,7 +10,7 @@ part 'api_client.g.dart';
 ApiClient apiClient(Ref ref) => ApiClient();
 
 class ApiClient {
-  final Dio _dio = Dio(BaseOptions(baseUrl: 'http://localhost:3000/'))
+  final Dio _dio = Dio(BaseOptions(baseUrl: 'http://127.0.0.1:5000/'))
     ..interceptors.add(LogInterceptor(
       request: true,
       requestBody: true,
@@ -21,8 +21,9 @@ class ApiClient {
     ));
 
   Future<ApiResponse> getByCursor(String? cursor) async {
+    cursor ??= '0';
     final response =
-        await _dio.get('/share-favors', queryParameters: {'cursor': cursor});
+        await _dio.get('/records', queryParameters: {'cursor': cursor});
 
     final data = response.data as Map<String, dynamic>;
 
@@ -36,17 +37,18 @@ class ApiClient {
 
   Future<User> createUser(String username) async {
     final response = await _dio.post(
-      '/user/create/',
-      data: {'username': username},
+      '/user/create',
+      data: {'user_name': username},
     );
 
     final data = response.data as Map<String, dynamic>;
+
     return User.fromJson(data);
   }
 
   Future<User> updateUser(String userId, String newUsername) async {
     final response = await _dio.put(
-      '/user/changename/',
+      '/user/changename',
       data: {
         'user_id': userId,
         'user_name': newUsername,
@@ -58,12 +60,12 @@ class ApiClient {
   }
 
   Future<void> updateFavorCounts({
-    required String userId,
+    required int userId,
     required int receivedFavorCount,
     required int repaidFavorCount,
   }) async {
     await _dio.put(
-      '/user/update/',
+      '/user/update',
       data: {
         'user_id': userId,
         'received_favor_count': receivedFavorCount,

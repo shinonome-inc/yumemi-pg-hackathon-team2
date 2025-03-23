@@ -12,7 +12,7 @@ class FavorRepository {
   final Ref ref;
 
   Future<void> updateFavorCounts({
-    required String userId,
+    required int userId,
     required int receivedFavorCount,
     required int repaidFavorCount,
   }) async {

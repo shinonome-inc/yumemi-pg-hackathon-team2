@@ -8,9 +8,9 @@ part of 'share_favor.dart';
 
 _$ShareFavorImpl _$$ShareFavorImplFromJson(Map<String, dynamic> json) =>
     _$ShareFavorImpl(
-      userId: json['userId'] as String,
+      userId: (json['userId'] as num).toInt(),
       userName: json['userName'] as String,
-      id: json['id'] as String,
+      id: (json['id'] as num).toInt(),
       receivedFavorText: json['receivedFavorText'] as String,
       receivedFavorDate: DateTime.parse(json['receivedFavorDate'] as String),
       repaidFavorText: json['repaidFavorText'] as String,

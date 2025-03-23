@@ -20,9 +20,9 @@ ShareFavor _$ShareFavorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ShareFavor {
-  String get userId => throw _privateConstructorUsedError; // ユーザーID
+  int get userId => throw _privateConstructorUsedError; // ユーザーID
   String get userName => throw _privateConstructorUsedError; // ユーザー名
-  String get id => throw _privateConstructorUsedError; // この投稿の個別id
+  int get id => throw _privateConstructorUsedError; // この投稿の個別id
   String get receivedFavorText => throw _privateConstructorUsedError; // 御恩のテキスト
   DateTime get receivedFavorDate => throw _privateConstructorUsedError; // 御恩の日時
   String get repaidFavorText => throw _privateConstructorUsedError; // 御恩のテキスト
@@ -45,9 +45,9 @@ abstract class $ShareFavorCopyWith<$Res> {
       _$ShareFavorCopyWithImpl<$Res, ShareFavor>;
   @useResult
   $Res call(
-      {String userId,
+      {int userId,
       String userName,
-      String id,
+      int id,
       String receivedFavorText,
       DateTime receivedFavorDate,
       String repaidFavorText,
@@ -81,7 +81,7 @@ class _$ShareFavorCopyWithImpl<$Res, $Val extends ShareFavor>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -89,7 +89,7 @@ class _$ShareFavorCopyWithImpl<$Res, $Val extends ShareFavor>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       receivedFavorText: null == receivedFavorText
           ? _value.receivedFavorText
           : receivedFavorText // ignore: cast_nullable_to_non_nullable
@@ -119,9 +119,9 @@ abstract class _$$ShareFavorImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userId,
+      {int userId,
       String userName,
-      String id,
+      int id,
       String receivedFavorText,
       DateTime receivedFavorDate,
       String repaidFavorText,
@@ -153,7 +153,7 @@ class __$$ShareFavorImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ class __$$ShareFavorImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       receivedFavorText: null == receivedFavorText
           ? _value.receivedFavorText
           : receivedFavorText // ignore: cast_nullable_to_non_nullable
@@ -198,13 +198,13 @@ class _$ShareFavorImpl implements _ShareFavor {
       _$$ShareFavorImplFromJson(json);
 
   @override
-  final String userId;
+  final int userId;
 // ユーザーID
   @override
   final String userName;
 // ユーザー名
   @override
-  final String id;
+  final int id;
 // この投稿の個別id
   @override
   final String receivedFavorText;
@@ -265,9 +265,9 @@ class _$ShareFavorImpl implements _ShareFavor {
 
 abstract class _ShareFavor implements ShareFavor {
   factory _ShareFavor(
-      {required final String userId,
+      {required final int userId,
       required final String userName,
-      required final String id,
+      required final int id,
       required final String receivedFavorText,
       required final DateTime receivedFavorDate,
       required final String repaidFavorText,
@@ -277,11 +277,11 @@ abstract class _ShareFavor implements ShareFavor {
       _$ShareFavorImpl.fromJson;
 
   @override
-  String get userId; // ユーザーID
+  int get userId; // ユーザーID
   @override
   String get userName; // ユーザー名
   @override
-  String get id; // この投稿の個別id
+  int get id; // この投稿の個別id
   @override
   String get receivedFavorText; // 御恩のテキスト
   @override
