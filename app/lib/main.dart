@@ -1,5 +1,6 @@
 import 'package:app/page/loading/loading_page.dart';
 import 'package:app/page/navigation_root/navigation_root.dart';
+import 'package:app/page/setting/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/loading': (context) => LoadingPage(),
         '/root': (context) => NavigationRoot(),
+        '/settings': (context) => SettingPage(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(

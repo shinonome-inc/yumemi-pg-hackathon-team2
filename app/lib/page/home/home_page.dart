@@ -1,5 +1,6 @@
 import 'package:app/page/home/received_favor_list.dart';
 import 'package:app/page/home/repaid_favor_list.dart';
+import 'package:app/page/setting/setting_page.dart';
 import 'package:app/provider/favor_count_updater.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -55,7 +56,15 @@ class HomePage extends ConsumerWidget {
                       size: 30,
                       color: Colors.grey,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) {
+                            return const SettingPage();
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

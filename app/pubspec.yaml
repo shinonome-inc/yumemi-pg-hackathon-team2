@@ -51,6 +51,7 @@ dependencies:
   uuid:
   freezed_annotation:
   json_annotation:
+  settings_ui: ^2.0.2
   riverpod_paging_utils: 
 
 dev_dependencies:
