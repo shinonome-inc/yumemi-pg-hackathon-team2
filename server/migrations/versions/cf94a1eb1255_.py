@@ -1,16 +1,8 @@
-<<<<<<<< Updated upstream:server/migrations/versions/0cbae934e914_create_user_table.py
-"""create user table
+"""empty message
 
-Revision ID: 0cbae934e914
+Revision ID: cf94a1eb1255
 Revises: 
-Create Date: 2025-03-23 14:24:35.267341
-========
-"""recordモデル
-
-Revision ID: 70f7fdf758ef
-Revises: 
-Create Date: 2025-03-23 19:33:07.762023
->>>>>>>> Stashed changes:server/migrations/versions/70f7fdf758ef_recordモデル.py
+Create Date: 2025-03-24 00:12:53.866563
 
 """
 from alembic import op
@@ -18,11 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< Updated upstream:server/migrations/versions/0cbae934e914_create_user_table.py
-revision = '0cbae934e914'
-========
-revision = '70f7fdf758ef'
->>>>>>>> Stashed changes:server/migrations/versions/70f7fdf758ef_recordモデル.py
+revision = 'cf94a1eb1255'
 down_revision = None
 branch_labels = None
 depends_on = None
