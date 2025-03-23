@@ -13,7 +13,7 @@ class UsernameEditPage extends HookConsumerWidget {
     final userState = ref.watch(userNotifierProvider);
     final notifier = ref.read(userNotifierProvider.notifier);
     final controller = useTextEditingController(
-      text: userState.value?.username ?? '',
+      text: userState.value?.userName ?? '',
     );
     final isButtonEnabled = useState(controller.text.trim().isNotEmpty);
 
@@ -60,7 +60,7 @@ class UsernameEditPage extends HookConsumerWidget {
         title: const Text(
           'ニックネームの更新',
           style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+        ),
         backgroundColor: const Color(0xFFFEF7F4),
         elevation: 0,
         foregroundColor: Colors.black,

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:app/model/user.dart';
 import 'package:app/repository/user_repository.dart';
@@ -11,11 +10,6 @@ class UserNotifier extends _$UserNotifier {
   @override
   Future<User?> build() async {
     final repo = ref.read(userRepositoryProvider);
-
-    if (kDebugMode) {
-      // デバッグモードなら仮ユーザーを返す
-      return User(userId: 'debug-id', username: 'デバッグ君');
-    }
 
     final existingUser = await repo.loadUser();
     if (existingUser != null) {

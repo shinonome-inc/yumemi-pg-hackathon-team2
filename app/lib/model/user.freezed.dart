@@ -177,7 +177,9 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'user_id')
   int get userId;
-
+  @override
+  @JsonKey(name: 'user_name')
+  String get userName;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

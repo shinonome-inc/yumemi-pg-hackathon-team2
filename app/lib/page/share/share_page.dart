@@ -1,3 +1,4 @@
+import 'package:app/page/setting/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'all_favor_list.dart';
@@ -50,7 +51,15 @@ class SharePage extends ConsumerWidget {
                       size: 30,
                       color: Colors.grey,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) {
+                            return const SettingPage();
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

@@ -322,6 +322,30 @@ abstract class _ShareFavor implements ShareFavor {
   factory _ShareFavor.fromJson(Map<String, dynamic> json) =
       _$ShareFavorImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'user_id')
+  int get userId; // ユーザーID
+  @override
+  @JsonKey(name: 'user_name')
+  String get userName; // ユーザー名
+  @override
+  @JsonKey(name: 'id')
+  int get id; // 投稿の個別ID
+  @override
+  @JsonKey(name: 'received_favor_text')
+  String get receivedFavorText; // 御恩のテキスト
+  @override
+  @JsonKey(name: 'received_favor_date')
+  DateTime get receivedFavorDate; // 御恩の日時
+  @override
+  @JsonKey(name: 'repaid_favor_text')
+  String get repaidFavorText; // 恩返しのテキスト
+  @override
+  @JsonKey(name: 'repaid_favor_date')
+  DateTime get repaiedFavorDate; // 恩返しの日時
+  @override
+  @JsonKey(name: 'memo')
+  String? get memo;
 
   /// Create a copy of ShareFavor
   /// with the given fields replaced by the non-null parameter values.
