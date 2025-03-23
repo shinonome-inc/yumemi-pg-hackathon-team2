@@ -47,7 +47,7 @@ class UsernameEditPage extends HookConsumerWidget {
 
       await notifier.updateUsername(newName);
 
-      if (!ref.read(userNotifierProvider).hasError && context.mounted) {
+      if (!ref.read(userNotifierProvider).hasError) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('ニックネームを更新しました')),
         );
@@ -57,10 +57,14 @@ class UsernameEditPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFFEF7F4),
       appBar: AppBar(
-        title: const Text('ニックネームの更新'),
+        title: const Text(
+          'ニックネームの更新',
+          style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         backgroundColor: const Color(0xFFFEF7F4),
         elevation: 0,
         foregroundColor: Colors.black,
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
@@ -69,20 +73,27 @@ class UsernameEditPage extends HookConsumerWidget {
           children: [
             const Text(
               'ニックネームを設定してください',
-              style: TextStyle(color: Colors.red, fontSize: 14),
+              style: TextStyle(color: Color(0xFFE98658), fontSize: 14),
             ),
             const SizedBox(height: 8),
             TextField(
               controller: controller,
-              decoration: const InputDecoration(
+              cursorColor: Color(0xFFE98658),
+              cursorWidth: 2,
+              decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                hintText: 'ニックネーム',
               ),
             ),
             const SizedBox(height: 8),
             const Text(
-              '名前が公開されます。',
+              '名前が公開されます。あとでいつでも変更可能です。',
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
             const SizedBox(height: 32),
@@ -91,7 +102,10 @@ class UsernameEditPage extends HookConsumerWidget {
               height: 48,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
+                  backgroundColor: const Color(0xFFE98658),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
                 onPressed: isButtonEnabled.value ? onUpdate : null,
                 child: const Text(
