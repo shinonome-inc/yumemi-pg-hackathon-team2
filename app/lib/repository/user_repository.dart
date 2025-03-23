@@ -23,6 +23,16 @@ class UserRepository {
     return user;
   }
 
+  Future<User> updateUser(String userId, String newUsername) async {
+    final apiClient = ref.read(apiClientProvider);
+    final updatedUser = await apiClient.updateUser(userId, newUsername);
+
+    final sharedPrefs = SharedPreferencesClient();
+    await sharedPrefs.saveUserInfo(updatedUser);
+
+    return updatedUser;
+  }
+
   /// 既存ユーザー情報の読み込み
   Future<User?> loadUser() async {
     final sharedPrefs = SharedPreferencesClient();

@@ -1,4 +1,5 @@
 import 'package:app/constants/app_colors.dart';
+import 'package:app/page/setting/username_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:app/provider/user_notifier.dart';
@@ -9,11 +10,7 @@ class SettingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userState = ref.watch(userNotifierProvider);
-    final username = userState.when(
-      data: (user) => user?.username ?? '名無し',
-      loading: () => '名無し',
-      error: (_, __) => '名無し',
-    );
+    final username = userState.value?.username ?? '名無し';
 
     return Scaffold(
       backgroundColor: AppColors.backgroundOrange,
@@ -44,7 +41,15 @@ class SettingPage extends ConsumerWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) {
+                      return const UsernameEditPage();
+                    },
+                  ),
+                );
+              },
             ),
             const Divider(height: 1),
             _SettingTile(
