@@ -26,12 +26,37 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
   final memoTextController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   bool showCalendar = false;
+  bool isButtonEnabled = false; // ボタンが有効かどうか
 
   // 日付選択処理
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     setState(() {
       selectedDate = selectedDay; // 選択された日付をセット
     });
+  }
+
+  void _onTextChanged(){
+    setState(() {
+      // 名前と内容が両方入力されている場合、ボタンを有効にする
+      isButtonEnabled = nameTextController.text.trim().isNotEmpty &&
+          favorTextController.text.trim().isNotEmpty;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // 入力内容が変わるたびにボタンの状態を更新
+    nameTextController.addListener(_onTextChanged);
+    favorTextController.addListener(_onTextChanged);
+  }
+
+  @override
+  void dispose() {
+    // リスナーを解除
+    nameTextController.removeListener(_onTextChanged);
+    favorTextController.removeListener(_onTextChanged);
+    super.dispose();
   }
 
   @override
@@ -107,10 +132,10 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                   Navigator.pop(context);
                 }
               },
-              child: const Text(
+              child: Text(
                 "追加",
                 style: TextStyle(
-                  color: Colors.orange,
+                  color: isButtonEnabled ? Colors.orange : Colors.grey,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
