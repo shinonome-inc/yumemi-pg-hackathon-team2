@@ -1,3 +1,4 @@
+import 'package:app/constants/app_colors.dart';
 import 'package:app/model/share_favor.dart' as UuidUtils;
 import 'package:app/provider/received_favor_notifier.dart';
 import 'package:app/provider/repaid_favor_notifier.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:table_calendar/table_calendar.dart'; 
+
 enum FavorType { received, repaid }
 
 class FavorAddModal extends ConsumerStatefulWidget {
@@ -69,13 +71,13 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
-          backgroundColor: const Color(0xFFF5F5F5),
+          backgroundColor: AppColors.backgroundModal,
           middle: Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Text(
               widget.type == FavorType.received ? "受けた恩を新規作成" : "奉公を登録",
               style: const TextStyle(
-                color: Colors.orange,
+                color: AppColors.primary,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -89,7 +91,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
               child: const Text(
                 "キャンセル",
                 style: TextStyle(
-                  color: Colors.orange,
+                  color: AppColors.primary,
                   fontSize: 14,
                 ),
               ),
@@ -135,7 +137,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
               child: Text(
                 "追加",
                 style: TextStyle(
-                  color: isButtonEnabled ? Colors.orange : Colors.grey,
+                  color: isButtonEnabled ? AppColors.primary : Colors.grey,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -154,19 +156,19 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                   CupertinoTextField(
                     controller: nameTextController,
                     placeholder: "名前",
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(12),
                   ),
                   const SizedBox(height: 16),
                   CupertinoTextField(
                     controller: favorTextController,
                     placeholder: "内容",
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(12),
                   ),
                   const SizedBox(height: 16),
                   CupertinoTextField(
                     controller: memoTextController,
                     placeholder: "メモ",
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(12),
                   ),
                   const SizedBox(height: 16),
 
@@ -175,13 +177,13 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                     children: [
                       Icon(
                         CupertinoIcons.calendar,
-                        color: showCalendar ? Colors.orange : Colors.grey,
+                        color: showCalendar ? AppColors.primary : AppColors.textField,
                       ),
                       const SizedBox(width: 8),
                       Text(
                         "してもらった日",
                         style: TextStyle(
-                          color: showCalendar ? Colors.orange : Colors.grey,
+                          color: showCalendar ? AppColors.primary : AppColors.textField,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -236,7 +238,8 @@ void showFavorAddModal(BuildContext context, FavorType type,
     {String? receivedFavorId}) {
   showModalBottomSheet(
     context: context,
-    isScrollControlled: true,
+    isScrollControlled: true, // スクロール制御を有効にして高さ調整
+    backgroundColor: Colors.transparent, // 背景色を透明に
     builder: (BuildContext context) {
       return FavorAddModal(type: type, receivedFavorId: receivedFavorId);
     },
