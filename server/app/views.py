@@ -198,12 +198,10 @@ def get_records():
             "id": record.id,
             "received_favor_text": record.received_favor_text,
             "received_favor_date": record.received_favor_date.strftime(
-                "%a, %d %b %Y %H:%M:%S GMT"
+                "%Y-%m-%d %H:%M:%S"
             ),
             "repaid_favor_text": record.repaid_favor_text,
-            "repaid_favor_date": record.repaid_favor_date.strftime(
-                "%a, %d %b %Y %H:%M:%S GMT"
-            ),
+            "repaid_favor_date": record.repaid_favor_date.strftime("%Y-%m-%d %H:%M:%S"),
         }
         for record in records
     ]
