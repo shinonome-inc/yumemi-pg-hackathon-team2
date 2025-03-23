@@ -137,7 +137,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
               child: Text(
                 "追加",
                 style: TextStyle(
-                  color: isButtonEnabled ? AppColors.primary : Colors.grey,
+                  color: isButtonEnabled ? AppColors.primary : AppColors.textField,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -209,7 +209,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                         const SizedBox(height: 4),
                         Text(
                           "選択された日: ${favorDateString}",
-                          style: const TextStyle(color: Colors.black),
+                          style: const TextStyle(color: AppColors.textBlack),
                         ),
                         const SizedBox(height: 4),
                         TableCalendar(
