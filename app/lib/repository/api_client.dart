@@ -1,12 +1,13 @@
 import 'package:app/model/share_favor.dart';
 import 'package:app/model/user.dart';
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'api_client.g.dart';
 
 @riverpod
-ApiClient apiClient(ApiClientRef ref) => ApiClient();
+ApiClient apiClient(Ref ref) => ApiClient();
 
 class ApiClient {
   final Dio _dio = Dio(BaseOptions(baseUrl: 'http://localhost:3000/'))
@@ -45,12 +46,30 @@ class ApiClient {
 
   Future<User> updateUser(String userId, String newUsername) async {
     final response = await _dio.put(
-      '/user/update/$userId',
-      data: {'username': newUsername},
+      '/user/changename/',
+      data: {
+        'user_id': userId,
+        'user_name': newUsername,
+      },
     );
 
     final data = response.data as Map<String, dynamic>;
     return User.fromJson(data);
+  }
+
+  Future<void> updateFavorCounts({
+    required String userId,
+    required int receivedFavorCount,
+    required int repaidFavorCount,
+  }) async {
+    await _dio.put(
+      '/user/update/',
+      data: {
+        'user_id': userId,
+        'received_favor_count': receivedFavorCount,
+        'repaid_favor_count': repaidFavorCount,
+      },
+    );
   }
 }
 

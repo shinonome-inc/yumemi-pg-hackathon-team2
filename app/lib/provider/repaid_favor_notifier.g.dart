@@ -7,7 +7,7 @@ part of 'repaid_favor_notifier.dart';
 // **************************************************************************
 
 String _$repaidFavorNotifierHash() =>
-    r'3842e38ae8cc7a5d34d04dad9639cea61496c5a1';
+    r'063e1e93c0b3b0e575822961552f5c0bb532b8bc';
 
 /// See also [RepaidFavorNotifier].
 @ProviderFor(RepaidFavorNotifier)
@@ -24,4 +24,4 @@ final repaidFavorNotifierProvider = AutoDisposeAsyncNotifierProvider<
 
 typedef _$RepaidFavorNotifier = AutoDisposeAsyncNotifier<List<RepaidFavor>>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

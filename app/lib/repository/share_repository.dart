@@ -1,14 +1,15 @@
 import 'package:app/model/share_favor.dart';
 import 'package:app/repository/api_client.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'share_repository.g.dart';
 
 @riverpod
-ShareRepository shareRepository(ShareRepositoryRef ref) => ShareRepository(ref);
+ShareRepository shareRepository(Ref ref) => ShareRepository(ref);
 
 class ShareRepository {
-  final ShareRepositoryRef ref;
+  final Ref ref;
   ShareRepository(this.ref);
 
   Future<(List<ShareFavor>, String?)> getByCursor(

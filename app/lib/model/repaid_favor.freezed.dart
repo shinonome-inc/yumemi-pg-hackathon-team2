@@ -26,8 +26,12 @@ mixin _$RepaidFavor {
   DateTime get favorDate => throw _privateConstructorUsedError; // 奉公をした日時
   String get memo => throw _privateConstructorUsedError;
 
+  /// Serializes this RepaidFavor to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RepaidFavor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RepaidFavorCopyWith<RepaidFavor> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$RepaidFavorCopyWithImpl<$Res, $Val extends RepaidFavor>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RepaidFavor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$RepaidFavorImplCopyWithImpl<$Res>
       _$RepaidFavorImpl _value, $Res Function(_$RepaidFavorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RepaidFavor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -198,12 +206,14 @@ class _$RepaidFavorImpl implements _RepaidFavor {
             (identical(other.memo, memo) || other.memo == memo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, receivedFavorId, favorText, favorDate, memo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RepaidFavor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RepaidFavorImplCopyWith<_$RepaidFavorImpl> get copyWith =>
@@ -229,17 +239,20 @@ abstract class _RepaidFavor implements RepaidFavor {
       _$RepaidFavorImpl.fromJson;
 
   @override
-  String get id;
-  @override // この奉公の個別id
-  String get receivedFavorId;
-  @override // 受けた恩のid
-  String get favorText;
-  @override // 奉公のテキスト
-  DateTime get favorDate;
-  @override // 奉公をした日時
-  String get memo;
+  String get id; // この奉公の個別id
   @override
-  @JsonKey(ignore: true)
+  String get receivedFavorId; // 受けた恩のid
+  @override
+  String get favorText; // 奉公のテキスト
+  @override
+  DateTime get favorDate; // 奉公をした日時
+  @override
+  String get memo;
+
+  /// Create a copy of RepaidFavor
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RepaidFavorImplCopyWith<_$RepaidFavorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
