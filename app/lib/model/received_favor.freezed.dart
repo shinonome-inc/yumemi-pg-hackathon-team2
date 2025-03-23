@@ -26,8 +26,12 @@ mixin _$ReceivedFavor {
   DateTime get favorDate => throw _privateConstructorUsedError; // 御恩を受けた日時
   String get memo => throw _privateConstructorUsedError;
 
+  /// Serializes this ReceivedFavor to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ReceivedFavor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ReceivedFavorCopyWith<ReceivedFavor> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$ReceivedFavorCopyWithImpl<$Res, $Val extends ReceivedFavor>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ReceivedFavor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$ReceivedFavorImplCopyWithImpl<$Res>
       _$ReceivedFavorImpl _value, $Res Function(_$ReceivedFavorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ReceivedFavor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -197,12 +205,14 @@ class _$ReceivedFavorImpl implements _ReceivedFavor {
             (identical(other.memo, memo) || other.memo == memo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, giverName, favorText, favorDate, memo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ReceivedFavor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReceivedFavorImplCopyWith<_$ReceivedFavorImpl> get copyWith =>
@@ -228,17 +238,20 @@ abstract class _ReceivedFavor implements ReceivedFavor {
       _$ReceivedFavorImpl.fromJson;
 
   @override
-  String get id;
-  @override // この御恩の個別id
-  String get giverName;
-  @override // 恩人の名前
-  String get favorText;
-  @override // 御恩のテキスト
-  DateTime get favorDate;
-  @override // 御恩を受けた日時
-  String get memo;
+  String get id; // この御恩の個別id
   @override
-  @JsonKey(ignore: true)
+  String get giverName; // 恩人の名前
+  @override
+  String get favorText; // 御恩のテキスト
+  @override
+  DateTime get favorDate; // 御恩を受けた日時
+  @override
+  String get memo;
+
+  /// Create a copy of ReceivedFavor
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReceivedFavorImplCopyWith<_$ReceivedFavorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

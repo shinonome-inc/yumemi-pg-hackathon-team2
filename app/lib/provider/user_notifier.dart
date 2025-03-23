@@ -4,7 +4,7 @@ import 'package:app/repository/user_repository.dart';
 
 part 'user_notifier.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class UserNotifier extends _$UserNotifier {
   // SharedPreferencesにユーザー情報がなければ作成
   @override

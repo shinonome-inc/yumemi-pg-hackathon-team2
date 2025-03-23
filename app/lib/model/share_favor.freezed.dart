@@ -28,8 +28,12 @@ mixin _$ShareFavor {
   String get repaidFavorText => throw _privateConstructorUsedError; // 御恩のテキスト
   DateTime get repaiedFavorDate => throw _privateConstructorUsedError;
 
+  /// Serializes this ShareFavor to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ShareFavor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ShareFavorCopyWith<ShareFavor> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$ShareFavorCopyWithImpl<$Res, $Val extends ShareFavor>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ShareFavor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +136,8 @@ class __$$ShareFavorImplCopyWithImpl<$Res>
       _$ShareFavorImpl _value, $Res Function(_$ShareFavorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ShareFavor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -234,12 +242,14 @@ class _$ShareFavorImpl implements _ShareFavor {
                 other.repaiedFavorDate == repaiedFavorDate));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, userId, userName, id,
       receivedFavorText, receivedFavorDate, repaidFavorText, repaiedFavorDate);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ShareFavor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ShareFavorImplCopyWith<_$ShareFavorImpl> get copyWith =>
@@ -267,21 +277,24 @@ abstract class _ShareFavor implements ShareFavor {
       _$ShareFavorImpl.fromJson;
 
   @override
-  String get userId;
-  @override // ユーザーID
-  String get userName;
-  @override // ユーザー名
-  String get id;
-  @override // この投稿の個別id
-  String get receivedFavorText;
-  @override // 御恩のテキスト
-  DateTime get receivedFavorDate;
-  @override // 御恩の日時
-  String get repaidFavorText;
-  @override // 御恩のテキスト
-  DateTime get repaiedFavorDate;
+  String get userId; // ユーザーID
   @override
-  @JsonKey(ignore: true)
+  String get userName; // ユーザー名
+  @override
+  String get id; // この投稿の個別id
+  @override
+  String get receivedFavorText; // 御恩のテキスト
+  @override
+  DateTime get receivedFavorDate; // 御恩の日時
+  @override
+  String get repaidFavorText; // 御恩のテキスト
+  @override
+  DateTime get repaiedFavorDate;
+
+  /// Create a copy of ShareFavor
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ShareFavorImplCopyWith<_$ShareFavorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

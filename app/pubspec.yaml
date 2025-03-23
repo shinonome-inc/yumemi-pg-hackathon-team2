@@ -51,6 +51,7 @@ dependencies:
   freezed_annotation:
   json_annotation:
   riverpod_paging_utils: ^0.7.0
+  settings_ui: ^2.0.2
 
 dev_dependencies:
   flutter_test:
