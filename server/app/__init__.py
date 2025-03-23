@@ -26,5 +26,9 @@ from .models.user_models import User  # ユーザーモデル
 from .models.record_models import Record  # 記録モデル
 
 # viewをインポート
-from .user_views import *
-from .record_views import *
+from .views import *
+
+
+# @app.route("/")
+# def index():
+#     return "API Server is running"
