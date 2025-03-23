@@ -38,3 +38,32 @@ def delete_record():
     db.session.commit()
 
     return jsonify({"message": "Record deleted successfully"}), 200
+
+
+@app.route("/records", methods=["GET"])
+def get_records():
+    cursor = request.args.get("cursor", type=int)
+    limit = request.args.get("limit", 20, type=int)
+
+    query = Record.query.order_by(Record.created_at.desc())
+    if cursor:
+        query = query.filter(Record.id < cursor)
+
+    records = query.limit(limit).all()
+
+    items = [
+        {
+            "userId": record.user_id,
+            "userName": record.user.name,  # userテーブルにnameカラムがある前提
+            "id": record.id,
+            "receivedFavorText": record.received_favor_text,
+            "receivedFavorDate": record.received_favor_date,
+            "repaidFavorText": record.repaid_favor_text,
+            "repaiedFavorDate": record.repaid_favor_date,
+        }
+        for record in records
+    ]
+
+    next_cursor = records[-1].id if records else None
+
+    return jsonify({"items": items, "nextCursor": next_cursor})
