@@ -1,4 +1,5 @@
 //import 'package:app/model/share_favor.dart';
+import 'package:app/constants/app_colors.dart';
 import 'package:app/provider/share_notifier.dart';
 import 'package:flutter/material.dart';
 //import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -33,7 +34,7 @@ class _AllFavorListState extends State<AllFavorList> {
                 DateFormat('yyyy/MM/dd').format(item.receivedFavorDate);
 
             return ListTile(
-              tileColor: Colors.white,
+              tileColor: AppColors.backgroundWhite,
               leading: Icon(
                 Icons.account_circle,
                 color: Colors.blue,
@@ -48,7 +49,7 @@ class _AllFavorListState extends State<AllFavorList> {
                         item.userName,
                         style: TextStyle(
                           fontSize: 15,
-                          color: Color(0xFF7C7C7C),
+                          color: AppColors.textGray,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -68,7 +69,7 @@ class _AllFavorListState extends State<AllFavorList> {
                     item.repaidFavorText,
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.black,
+                      color: AppColors.textBlack,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -76,7 +77,7 @@ class _AllFavorListState extends State<AllFavorList> {
                     item.receivedFavorText + "⇨" + formattedReceivedDate,
                     style: TextStyle(
                       fontSize: 15,
-                      color: Color(0xFFBCBCBC),
+                      color:AppColors.textField,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

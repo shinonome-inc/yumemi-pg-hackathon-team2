@@ -1,4 +1,5 @@
 import 'package:app/component/favor_add_modal.dart';
+import 'package:app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:app/model/received_favor.dart';
 
@@ -10,18 +11,18 @@ class FavorDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundWhite,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.backgroundWhite,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 20),
+          icon: const Icon(Icons.arrow_back_ios, color: AppColors.textBlack, size: 20),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
           '受けた恩の詳細',
           style: TextStyle(
-            color: Colors.black,
+            color:AppColors.textBlack,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
@@ -35,8 +36,9 @@ class FavorDetailPage extends StatelessWidget {
             child: const Text(
               '編集',
               style: TextStyle(
-                color: Colors.orange,
+                color:AppColors.primary,
                 fontSize: 14,
+                fontWeight: FontWeight.bold
               ),
             ),
           ),
@@ -56,7 +58,7 @@ class FavorDetailPage extends StatelessWidget {
                   child: const Icon(
                     Icons.person_outline,
                     size: 40,
-                    color: Colors.white,
+                    color:AppColors.backgroundWhite,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -64,7 +66,7 @@ class FavorDetailPage extends StatelessWidget {
                   favor.giverName,
                   style: const TextStyle(
                     fontSize: 20,
-                    color: Colors.grey,
+                    color:AppColors.textGray,
                   ),
                 ),
               ],
@@ -76,7 +78,7 @@ class FavorDetailPage extends StatelessWidget {
               'してもらったこと',
               style: TextStyle(
                 fontSize: 14,
-                color: Colors.grey,
+                color:AppColors.textGray,
               ),
             ),
             const SizedBox(height: 8),
@@ -96,7 +98,7 @@ class FavorDetailPage extends StatelessWidget {
               _formatDate(favor.favorDate),
               style: const TextStyle(
                 fontSize: 16,
-                color: Colors.grey,
+                color: AppColors.textField,
               ),
             ),
             const SizedBox(height: 24),
@@ -114,7 +116,7 @@ class FavorDetailPage extends StatelessWidget {
               'メモ',
               style: TextStyle(
                 fontSize: 14,
-                color: Colors.grey,
+                color:AppColors.textGray,
               ),
             ),
             const SizedBox(height: 8),
@@ -141,8 +143,8 @@ class FavorDetailPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF689EDC),
-                  foregroundColor: Colors.white,
+                  backgroundColor: AppColors.secondary,
+                  foregroundColor: AppColors.backgroundWhite,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),

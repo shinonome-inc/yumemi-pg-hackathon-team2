@@ -1,3 +1,4 @@
+import 'package:app/constants/app_colors.dart';
 import 'package:app/model/received_favor.dart';
 import 'package:app/provider/received_favor_notifier.dart';
 import 'package:app/provider/repaid_favor_notifier.dart';
@@ -16,7 +17,7 @@ class RepaidFavorList extends ConsumerWidget {
       data: (receivedData) {
         return repaidFavors.when(
           data: (repaidData) => Scaffold(
-            backgroundColor: Colors.blue.withValues(alpha: 0.05),
+            backgroundColor: AppColors.backgroundBlue,
             body: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               itemCount: repaidData.length,
@@ -56,14 +57,14 @@ class RepaidFavorList extends ConsumerWidget {
                 //   ),
                 // );
                 return Card(
-                  color: Colors.white,
+                  color: AppColors.backgroundWhite,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   elevation: 0,
                   child: ListTile(
                     leading: Icon(
                       Icons.account_circle,
-                      color: Colors.blue,
+                      color:AppColors.secondary,
                       size: 50,
                     ),
                     subtitle: Column(
@@ -75,7 +76,7 @@ class RepaidFavorList extends ConsumerWidget {
                               linkedReceivedFavor.giverName,
                               style: TextStyle(
                                 fontSize: 15,
-                                color: Color(0xFF7C7C7C),
+                                color: AppColors.textGray,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -95,14 +96,14 @@ class RepaidFavorList extends ConsumerWidget {
                           favor.favorText,
                           style: TextStyle(
                             fontSize: 15,
-                            color: Colors.black,
+                            color: AppColors.textBlack,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           style: TextStyle(
                             fontSize: 15,
-                            color: Color(0xFFBCBCBC),
+                            color: AppColors.textField,
                             fontWeight: FontWeight.bold,
                           ),
                           favor.memo + "⇨" + repaidFavorDateString,

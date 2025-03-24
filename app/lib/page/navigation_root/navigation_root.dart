@@ -1,3 +1,4 @@
+import 'package:app/constants/app_colors.dart';
 import 'package:app/page/home/home_page.dart';
 import 'package:app/page/share/share_page.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +38,8 @@ class _NavigationRootState extends State<NavigationRoot> {
         onTap: _onItemTap,
         iconSize: 30,
         backgroundColor: Colors.white,
-        selectedItemColor: Colors.orange,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor:AppColors.primary,
+        unselectedItemColor:AppColors.iconGrey,
       ),
     );
   }
