@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_paging_utils/riverpod_paging_utils.dart';
 
-class allFavorList extends StatefulWidget {
-  const allFavorList({super.key});
+class AllFavorList extends StatefulWidget {
+  const AllFavorList({super.key});
 
   @override
-  State<allFavorList> createState() => _allFavorListState();
+  State<AllFavorList> createState() => _AllFavorListState();
 }
 
-class _allFavorListState extends State<allFavorList> {
+class _AllFavorListState extends State<AllFavorList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

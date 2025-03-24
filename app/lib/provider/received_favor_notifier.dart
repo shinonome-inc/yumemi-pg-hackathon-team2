@@ -32,6 +32,15 @@ class ReceivedFavorNotifier extends _$ReceivedFavorNotifier {
     state = AsyncData([]);
   }
 
+  Future<ReceivedFavor?> getReceivedFavorById(String id) async {
+    final currentFavors = await _storage.loadReceivedFavors();
+    try {
+      return currentFavors.firstWhere((favor) => favor.id == id);
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<int> getReceivedFavorCount() async {
     final currentFavors = await _storage.loadReceivedFavors();
     return currentFavors.length;

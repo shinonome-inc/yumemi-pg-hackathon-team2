@@ -1,3 +1,4 @@
+import 'package:app/model/share_favor_request.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:app/repository/api_client.dart';
@@ -22,5 +23,10 @@ class FavorRepository {
       receivedFavorCount: receivedFavorCount,
       repaidFavorCount: repaidFavorCount,
     );
+  }
+
+  Future<void> postShareFavor(ShareFavorRequest request) async {
+    final api = ref.read(apiClientProvider);
+    await api.postShareFavor(request);
   }
 }
