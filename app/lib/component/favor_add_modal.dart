@@ -75,7 +75,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
           middle: Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Text(
-              widget.type == FavorType.received ? "受けた恩を新規作成" : "奉公を登録",
+              widget.type == FavorType.received ? "受けた恩を新規作成" : "返した恩を新規作成",
               style: const TextStyle(
                 color: AppColors.primary,
                 fontSize: 16,
