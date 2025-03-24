@@ -83,8 +83,8 @@ class SharePage extends ConsumerWidget {
         ),
         body: const TabBarView(
           children: <Widget>[
-            allFavorList(),
-            rankingFavorList(),
+            AllFavorList(),
+            RankingFavorList(),
           ],
         ),
       ),

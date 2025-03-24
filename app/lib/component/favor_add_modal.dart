@@ -33,25 +33,37 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
   bool showCalendar = false;
   bool isButtonEnabled = false; // ボタンが有効かどうか
 
-  Future<void> shareFavor(String favorText, String memoText) async {
+  Future<void> shareFavor(
+      String nameText, String favorText, String memoText, int userId) async {
+    final receivedFavorId = widget.receivedFavorId!;
+    final receivedFavor = await ref
+        .read(receivedFavorNotifierProvider.notifier)
+        .getReceivedFavorById(receivedFavorId);
+
+    if (receivedFavor == null) {
+      throw Exception('対応する受けた恩が見つかりません');
+    }
+
     await ref.read(repaidFavorNotifierProvider.notifier).addRepaidFavor(
           RepaidFavor(
             id: UuidUtils.generateUuid(),
-            receivedFavorId: widget.receivedFavorId!,
+            receivedFavorId: receivedFavorId,
             favorText: favorText,
             favorDate: selectedDate,
             memo: memoText,
           ),
         );
+
     final favor = ShareFavorRequest(
-      userId: 1,
-      receivedFavorText: 'お菓子買ってもらった',
-      receivedFavorDate: DateTime.parse('2025-03-23T14:00:00.000'),
-      giverName: '佐藤さん2',
-      repaidFavorText: '運転した',
-      repaidFavorDate: DateTime.parse('2025-03-23T14:00:00.000'),
-      memo: 'ありがとう！また何かあれば助ける',
+      userId: userId,
+      receivedFavorText: receivedFavor.favorText,
+      receivedFavorDate: receivedFavor.favorDate,
+      giverName: nameText,
+      repaidFavorText: favorText,
+      repaidFavorDate: selectedDate,
+      memo: memoText,
     );
+
     await ref.read(shareFavorUploaderProvider.notifier).upload(favor);
     await ref.read(favorCountUpdaterProvider.notifier).updateFavorCounts();
   }
@@ -152,7 +164,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                         if (user == null) {
                           throw Exception('ユーザー情報が存在しません');
                         }
-                        shareFavor(favorText, memoText);
+                        shareFavor(nameText, favorText, memoText, user.userId);
                       } catch (e) {
                         debugPrint('エラー: $e');
                       }

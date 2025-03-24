@@ -119,7 +119,7 @@ class FavorDetailPage extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              favor.memo ?? '',
+              favor.memo,
               style: const TextStyle(
                 fontSize: 16,
               ),

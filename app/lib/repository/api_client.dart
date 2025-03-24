@@ -1,3 +1,4 @@
+import 'package:app/model/ranking_user.dart';
 import 'package:app/model/share_favor.dart';
 import 'package:app/model/share_favor_request.dart';
 import 'package:app/model/user.dart';
@@ -99,6 +100,15 @@ class ApiClient {
         'repaid_favor_count': repaidFavorCount,
       },
     );
+  }
+
+  Future<List<RankingUser>> fetchRankingUsers() async {
+    final response = await _dio.get('/user/ranking');
+    final data = response.data as List<dynamic>;
+
+    return data
+        .map((item) => RankingUser.fromJson(item as Map<String, dynamic>))
+        .toList();
   }
 }
 
