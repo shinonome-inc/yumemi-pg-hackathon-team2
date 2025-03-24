@@ -131,11 +131,7 @@ class ReceivedFavorList extends ConsumerWidget {
                 backgroundColor: Colors.orange,
                 mini: true,
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) =>
-                        const FavorAddModal(type: FavorType.received),
-                  );
+                  showFavorAddModal(context, FavorType.received);
                 }, //ここに関数を入れる
                 shape: CircleBorder(),
                 tooltip: "Increment",
