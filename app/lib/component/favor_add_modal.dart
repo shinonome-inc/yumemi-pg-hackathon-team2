@@ -82,10 +82,16 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
 
   void _onTextChanged() {
     setState(() {
-      isButtonEnabled = nameTextController.text.trim().isNotEmpty &&
-          favorTextController.text.trim().isNotEmpty;
+      if (widget.type == FavorType.received) {
+        isButtonEnabled = nameTextController.text.trim().isNotEmpty &&
+            favorTextController.text.trim().isNotEmpty;
+      }
+      else {
+        isButtonEnabled = favorTextController.text.trim().isNotEmpty;
+      }
     });
   }
+
 
   String _formatDate(DateTime date) {
     return "${date.year}年${date.month}月${date.day}日";
@@ -192,8 +198,8 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                   style: TextStyle(
                     color: isButtonEnabled
                         ? (widget.type == FavorType.received
-                            ? Colors.orange
-                            : Colors.lightBlue)
+                            ? AppColors.primary
+                            : AppColors.secondary)
                         : AppColors.textField,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -418,7 +424,7 @@ void showFavorAddModal(BuildContext context, FavorType type,
     backgroundColor: AppColors.backgroundModal,
     builder: (BuildContext context) {
       return FractionallySizedBox(
-        heightFactor: 0.93, // 高さの割合（80%）
+        heightFactor: 0.93, 
         child: FavorAddModal(
           type: type,
           receivedFavorId: receivedFavorId,
