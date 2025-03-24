@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'received_favor_notifier.dart';
+part of 'ranking_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$receivedFavorNotifierHash() =>
-    r'7527cf7ce21227fdfe337ffede69f2e2ec6b5e5a';
+String _$rankingRepositoryHash() => r'5c3c3dc068527c00459ff1e7c90ddf2a2244f446';
 
-/// See also [ReceivedFavorNotifier].
-@ProviderFor(ReceivedFavorNotifier)
-final receivedFavorNotifierProvider = AutoDisposeAsyncNotifierProvider<
-    ReceivedFavorNotifier, List<ReceivedFavor>>.internal(
-  ReceivedFavorNotifier.new,
-  name: r'receivedFavorNotifierProvider',
+/// See also [rankingRepository].
+@ProviderFor(rankingRepository)
+final rankingRepositoryProvider =
+    AutoDisposeProvider<RankingRepository>.internal(
+  rankingRepository,
+  name: r'rankingRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$receivedFavorNotifierHash,
+      : _$rankingRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ReceivedFavorNotifier = AutoDisposeAsyncNotifier<List<ReceivedFavor>>;
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef RankingRepositoryRef = AutoDisposeProviderRef<RankingRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
