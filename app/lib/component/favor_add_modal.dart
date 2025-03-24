@@ -8,7 +8,7 @@ import 'package:app/model/repaid_favor.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:table_calendar/table_calendar.dart'; 
+import 'package:table_calendar/table_calendar.dart';
 
 enum FavorType { received, repaid }
 
@@ -37,7 +37,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
     });
   }
 
-  void _onTextChanged(){
+  void _onTextChanged() {
     setState(() {
       // 名前と内容が両方入力されている場合、ボタンを有効にする
       isButtonEnabled = nameTextController.text.trim().isNotEmpty &&
@@ -67,164 +67,186 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
     final favorDateString =
         "${selectedDate.year}/${selectedDate.month}/${selectedDate.day}";
 
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          backgroundColor: AppColors.backgroundModal,
-          middle: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
-            child: Text(
-              widget.type == FavorType.received ? "受けた恩を新規作成" : "返した恩を新規作成",
-              style: const TextStyle(
-                color: AppColors.primary,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
-            child: CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: () => Navigator.pop(context),
-              child: const Text(
-                "キャンセル",
-                style: TextStyle(
-                  color: AppColors.primary,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-          ),
-          trailing: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
-            child: CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: () {
-                final nameText = nameTextController.text.trim();
-                final favorText = favorTextController.text.trim();
-                final memoText = memoTextController.text.trim();
-                if (favorText.isNotEmpty) {
-                  if (widget.type == FavorType.received) {
-                    ref
-                        .read(receivedFavorNotifierProvider.notifier)
-                        .addReceivedFavor(
-                          ReceivedFavor(
-                            id: UuidUtils.generateUuid(),
-                            giverName: nameText,
-                            favorText: favorText,
-                            favorDate: selectedDate,
-                            memo: memoText,
-                          ),
-                        );
-                  } else {
-                    ref
-                        .read(repaidFavorNotifierProvider.notifier)
-                        .addRepaidFavor(
-                          RepaidFavor(
-                            id: UuidUtils.generateUuid(),
-                            receivedFavorId: widget.receivedFavorId!,
-                            favorText: favorText,
-                            favorDate: selectedDate,
-                            memo: memoText,
-                          ),
-                        );
-                  }
-                  Navigator.pop(context);
-                }
-              },
+    return Material(
+      color: AppColors.backgroundModal,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: CupertinoPageScaffold(
+          navigationBar: CupertinoNavigationBar(
+            backgroundColor: AppColors.backgroundModal,
+            middle: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Text(
-                "追加",
-                style: TextStyle(
-                  color: isButtonEnabled ? AppColors.primary : AppColors.textField,
-                  fontSize: 14,
+                widget.type == FavorType.received ? "受けた恩を新規作成" : "返した恩を新規作成",
+                style:  TextStyle(
+                  color: widget.type == FavorType.received
+                      ? AppColors.primary
+                      : AppColors.secondary, 
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+            leading: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () => Navigator.pop(context),
+                child:  Text(
+                  "キャンセル",
+                  style: TextStyle(
+                    color: widget.type == FavorType.received
+                        ? AppColors.primary
+                        : AppColors.secondary,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+            trailing: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {
+                  final nameText = nameTextController.text.trim();
+                  final favorText = favorTextController.text.trim();
+                  final memoText = memoTextController.text.trim();
+                  if (favorText.isNotEmpty) {
+                    if (widget.type == FavorType.received) {
+                      ref
+                          .read(receivedFavorNotifierProvider.notifier)
+                          .addReceivedFavor(
+                            ReceivedFavor(
+                              id: UuidUtils.generateUuid(),
+                              giverName: nameText,
+                              favorText: favorText,
+                              favorDate: selectedDate,
+                              memo: memoText,
+                            ),
+                          );
+                    } else {
+                      ref
+                          .read(repaidFavorNotifierProvider.notifier)
+                          .addRepaidFavor(
+                            RepaidFavor(
+                              id: UuidUtils.generateUuid(),
+                              receivedFavorId: widget.receivedFavorId!,
+                              favorText: favorText,
+                              favorDate: selectedDate,
+                              memo: memoText,
+                            ),
+                          );
+                    }
+                    Navigator.pop(context);
+                  }
+                },
+                child: Text(
+                  "追加",
+                  style: TextStyle(
+                    color: isButtonEnabled
+                        ? (widget.type == FavorType.received
+                            ? Colors.orange
+                            : Colors.lightBlue)
+                        : AppColors.textField,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            border: null,
           ),
-          border: null,
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  CupertinoTextField(
-                    controller: nameTextController,
-                    placeholder: "名前",
-                    padding: const EdgeInsets.all(12),
-                  ),
-                  const SizedBox(height: 16),
-                  CupertinoTextField(
-                    controller: favorTextController,
-                    placeholder: "内容",
-                    padding: const EdgeInsets.all(12),
-                  ),
-                  const SizedBox(height: 16),
-                  CupertinoTextField(
-                    controller: memoTextController,
-                    placeholder: "メモ",
-                    padding: const EdgeInsets.all(12),
-                  ),
-                  const SizedBox(height: 16),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    CupertinoTextField(
+                      controller: nameTextController,
+                      placeholder: "名前",
+                      padding: const EdgeInsets.all(12),
+                    ),
+                    const SizedBox(height: 16),
+                    CupertinoTextField(
+                      controller: favorTextController,
+                      placeholder:
+                          widget.type == FavorType.received ? "してもらったこと" : "したこと",
+                      padding: const EdgeInsets.all(12),
+                    ),
+                    const SizedBox(height: 16),
+                    CupertinoTextField(
+                      controller: memoTextController,
+                      placeholder: "メモ",
+                      padding: const EdgeInsets.all(12),
+                    ),
+                    const SizedBox(height: 16),
 
-                  // 「してもらった日」のテキストとスイッチを表示
-                  Row(
-                    children: [
-                      Icon(
-                        CupertinoIcons.calendar,
-                        color: showCalendar ? AppColors.primary : AppColors.textField,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        "してもらった日",
-                        style: TextStyle(
-                          color: showCalendar ? AppColors.primary : AppColors.textField,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Spacer(),
-                      CupertinoSwitch(
-                        value: showCalendar,
-                        onChanged: (value) {
-                          setState(() {
-                            showCalendar = value;
-                          });
-                        },
-                        activeColor:
-                            Colors.green, // Green color when switched on
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-
-                  if (showCalendar)
-                    Column(
+                    // 「してもらった日」のテキストとスイッチを表示
+                    Row(
                       children: [
-                        const SizedBox(height: 4),
+                        Icon(
+                          CupertinoIcons.calendar,
+                          color: showCalendar
+                              ? (widget.type == FavorType.received
+                                  ? AppColors.primary
+                                  : AppColors.secondary)
+                              : AppColors.textField,
+                        ),
+                        const SizedBox(width: 8),
                         Text(
-                          "選択された日: ${favorDateString}",
-                          style: const TextStyle(color: AppColors.textBlack),
+                          widget.type == FavorType.received
+                              ? "してもらった日"
+                              :"した日",
+                          style: TextStyle(
+                            color: showCalendar
+                                ? (widget.type == FavorType.received
+                                    ? AppColors.primary
+                                    : AppColors.secondary)
+                                : AppColors.textField,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        const SizedBox(height: 4),
-                        TableCalendar(
-                          firstDay: DateTime.utc(2000, 1, 1),
-                          lastDay: DateTime.utc(2101, 12, 31),
-                          focusedDay: selectedDate,
-                          selectedDayPredicate: (day) =>
-                              isSameDay(day, selectedDate),
-                          onDaySelected: _onDaySelected,
+                        const Spacer(),
+                        CupertinoSwitch(
+                          value: showCalendar,
+                          onChanged: (value) {
+                            setState(() {
+                              showCalendar = value;
+                            });
+                          },
+                          activeColor:
+                              Colors.green, // Green color when switched on
                         ),
-                        const SizedBox(height: 16),
                       ],
                     ),
-                  const SizedBox(height: 16),
-                ],
+                    const SizedBox(height: 16),
+
+                    if (showCalendar)
+                      Column(
+                        children: [
+                          const SizedBox(height: 4),
+                          Text(
+                            "選択した日: ${favorDateString}",
+                            style: const TextStyle(color: AppColors.textBlack),
+                          ),
+                          const SizedBox(height: 4),
+                          TableCalendar(
+                            firstDay: DateTime.utc(2000, 1, 1),
+                            lastDay: DateTime.utc(2101, 12, 31),
+                            focusedDay: selectedDate,
+                            selectedDayPredicate: (day) =>
+                                isSameDay(day, selectedDate),
+                            onDaySelected: _onDaySelected,
+                          ),
+                          const SizedBox(height: 16),
+                        ],
+                      ),
+                    const SizedBox(height: 16),
+                  ],
+                ),
               ),
             ),
           ),
@@ -239,7 +261,7 @@ void showFavorAddModal(BuildContext context, FavorType type,
   showModalBottomSheet(
     context: context,
     isScrollControlled: true, // スクロール制御を有効にして高さ調整
-    backgroundColor: Colors.transparent, // 背景色を透明に
+    backgroundColor: AppColors.backgroundModal, // 背景色を透明に
     builder: (BuildContext context) {
       return FavorAddModal(type: type, receivedFavorId: receivedFavorId);
     },

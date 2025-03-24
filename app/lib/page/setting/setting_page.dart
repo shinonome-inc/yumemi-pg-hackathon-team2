@@ -10,7 +10,7 @@ class SettingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userState = ref.watch(userNotifierProvider);
-    final username = userState.value?.username ?? '名無し';
+    final username = userState.value?.userName ?? '名無し';
 
     return Scaffold(
       backgroundColor: AppColors.backgroundOrange,

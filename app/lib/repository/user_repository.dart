@@ -24,9 +24,10 @@ class UserRepository {
     return user;
   }
 
-  Future<User> updateUser(String userId, String newUsername) async {
+  Future<User> updateUser(int userId, String newUsername) async {
     final apiClient = ref.read(apiClientProvider);
     final updatedUser = await apiClient.updateUser(userId, newUsername);
+    print(updatedUser);
 
     final sharedPrefs = SharedPreferencesClient();
     await sharedPrefs.saveUserInfo(updatedUser);

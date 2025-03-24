@@ -46,8 +46,8 @@ class ApiClient {
     return User.fromJson(data);
   }
 
-  Future<User> updateUser(String userId, String newUsername) async {
-    final response = await _dio.put(
+  Future<User> updateUser(int userId, String newUsername) async {
+    await _dio.put(
       '/user/changename',
       data: {
         'user_id': userId,
@@ -55,8 +55,9 @@ class ApiClient {
       },
     );
 
-    final data = response.data as Map<String, dynamic>;
-    return User.fromJson(data);
+    // final data = response.data as Map<String, dynamic>;
+    // return User.fromJson(data);
+    return User(userId: userId, userName: newUsername);
   }
 
   Future<void> updateFavorCounts({
