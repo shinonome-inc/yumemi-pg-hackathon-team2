@@ -78,10 +78,10 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Text(
                 widget.type == FavorType.received ? "受けた恩を新規作成" : "返した恩を新規作成",
-                style:  TextStyle(
+                style: TextStyle(
                   color: widget.type == FavorType.received
                       ? AppColors.primary
-                      : AppColors.secondary, 
+                      : AppColors.secondary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -92,7 +92,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
               child: CupertinoButton(
                 padding: EdgeInsets.zero,
                 onPressed: () => Navigator.pop(context),
-                child:  Text(
+                child: Text(
                   "キャンセル",
                   style: TextStyle(
                     color: widget.type == FavorType.received
@@ -171,8 +171,9 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                     const SizedBox(height: 16),
                     CupertinoTextField(
                       controller: favorTextController,
-                      placeholder:
-                          widget.type == FavorType.received ? "してもらったこと" : "したこと",
+                      placeholder: widget.type == FavorType.received
+                          ? "してもらったこと"
+                          : "したこと",
                       padding: const EdgeInsets.all(12),
                     ),
                     const SizedBox(height: 16),
@@ -184,66 +185,87 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                     const SizedBox(height: 16),
 
                     // 「してもらった日」のテキストとスイッチを表示
-                    Row(
-                      children: [
-                        Icon(
-                          CupertinoIcons.calendar,
-                          color: showCalendar
-                              ? (widget.type == FavorType.received
-                                  ? AppColors.primary
-                                  : AppColors.secondary)
-                              : AppColors.textField,
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: AppColors.backgroundWhite,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(
+                          color: AppColors.strokeGrey,
+                          width: 0.5,
                         ),
-                        const SizedBox(width: 8),
-                        Text(
-                          widget.type == FavorType.received
-                              ? "してもらった日"
-                              :"した日",
-                          style: TextStyle(
-                            color: showCalendar
-                                ? (widget.type == FavorType.received
-                                    ? AppColors.primary
-                                    : AppColors.secondary)
-                                : AppColors.textField,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(),
-                        CupertinoSwitch(
-                          value: showCalendar,
-                          onChanged: (value) {
-                            setState(() {
-                              showCalendar = value;
-                            });
-                          },
-                          activeColor:
-                              Colors.green, // Green color when switched on
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-
-                    if (showCalendar)
-                      Column(
+                      ),
+                      child: Column(
                         children: [
-                          const SizedBox(height: 4),
-                          Text(
-                            "選択した日: ${favorDateString}",
-                            style: const TextStyle(color: AppColors.textBlack),
+                          // ← ここは常に表示される部分（Row）
+                          Row(
+                            children: [
+                              Icon(
+                                CupertinoIcons.calendar,
+                                color: showCalendar
+                                    ? (widget.type == FavorType.received
+                                        ? AppColors.primary
+                                        : AppColors.secondary)
+                                    : AppColors.textField,
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                widget.type == FavorType.received
+                                    ? "してもらった日"
+                                    : "した日",
+                                style: TextStyle(
+                                  color: showCalendar
+                                      ? (widget.type == FavorType.received
+                                          ? AppColors.primary
+                                          : AppColors.secondary)
+                                      : AppColors.textField,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Spacer(),
+                              CupertinoSwitch(
+                                value: showCalendar,
+                                onChanged: (value) {
+                                  setState(() {
+                                    showCalendar = value;
+                                  });
+                                },
+                                activeColor: Colors.green,
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 4),
-                          TableCalendar(
-                            firstDay: DateTime.utc(2000, 1, 1),
-                            lastDay: DateTime.utc(2101, 12, 31),
-                            focusedDay: selectedDate,
-                            selectedDayPredicate: (day) =>
-                                isSameDay(day, selectedDate),
-                            onDaySelected: _onDaySelected,
+
+                          // ↓ この部分だけアニメーションするようにする
+                          AnimatedSize(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                            child: showCalendar
+                                ? Column(
+                                    children: [
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        "選択した日: $favorDateString",
+                                        style: const TextStyle(
+                                            color: AppColors.textBlack),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      TableCalendar(
+                                        firstDay: DateTime.utc(2000, 1, 1),
+                                        lastDay: DateTime.utc(2101, 12, 31),
+                                        focusedDay: selectedDate,
+                                        selectedDayPredicate: (day) =>
+                                            isSameDay(day, selectedDate),
+                                        onDaySelected: _onDaySelected,
+                                      ),
+                                    ],
+                                  )
+                                : const SizedBox.shrink(), // 非表示時は空ウィジェット
                           ),
-                          const SizedBox(height: 16),
                         ],
                       ),
+                    ),
+
                     const SizedBox(height: 16),
                   ],
                 ),
