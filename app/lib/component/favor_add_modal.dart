@@ -168,25 +168,52 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                       placeholder: "名前",
                       padding: const EdgeInsets.all(12),
                     ),
-                    const SizedBox(height: 16),
-                    CupertinoTextField(
-                      controller: favorTextController,
-                      placeholder: widget.type == FavorType.received
-                          ? "してもらったこと"
-                          : "したこと",
-                      padding: const EdgeInsets.all(12),
+
+                    const SizedBox(height: 20),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.backgroundWhite,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                            color: AppColors.strokeGrey, 
+                            width: 0.5),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          CupertinoTextField(
+                            controller: favorTextController,
+                            placeholder: widget.type == FavorType.received
+                                ? "してもらったこと"
+                                : "したこと",
+                            padding: const EdgeInsets.all(12),
+                            decoration: const BoxDecoration(), 
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: Container(
+                              height: 0.5,
+                              color: AppColors.strokeGrey,
+                            ),
+                          ),
+
+                          CupertinoTextField(
+                            controller: memoTextController,
+                            placeholder: "メモ",
+                            padding: const EdgeInsets.all(12),
+                            decoration: const BoxDecoration(),
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 16),
-                    CupertinoTextField(
-                      controller: memoTextController,
-                      placeholder: "メモ",
-                      padding: const EdgeInsets.all(12),
-                    ),
-                    const SizedBox(height: 16),
+
+                    const SizedBox(height: 20),
 
                     // 「してもらった日」のテキストとスイッチを表示
                     Container(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                       decoration: BoxDecoration(
                         color: AppColors.backgroundWhite,
                         borderRadius: BorderRadius.circular(5),
@@ -208,7 +235,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                                         : AppColors.secondary)
                                     : AppColors.textField,
                               ),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: 4),
                               Text(
                                 widget.type == FavorType.received
                                     ? "してもらった日"
