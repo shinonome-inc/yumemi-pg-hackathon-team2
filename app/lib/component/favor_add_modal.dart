@@ -15,8 +15,14 @@ enum FavorType { received, repaid }
 class FavorAddModal extends ConsumerStatefulWidget {
   final FavorType type;
   final String? receivedFavorId;
+  final ReceivedFavor? receivedFavor;
 
-  const FavorAddModal({super.key, required this.type, this.receivedFavorId});
+  const FavorAddModal({
+    super.key,
+    required this.type,
+    this.receivedFavorId,
+    this.receivedFavor,
+  });
 
   @override
   _FavorAddModalState createState() => _FavorAddModalState();
@@ -28,34 +34,34 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
   final memoTextController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   bool showCalendar = false;
-  bool isButtonEnabled = false; // ボタンが有効かどうか
+  bool isButtonEnabled = false;
 
-  // 日付選択処理
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     setState(() {
-      selectedDate = selectedDay; // 選択された日付をセット
+      selectedDate = selectedDay;
     });
   }
 
   void _onTextChanged() {
     setState(() {
-      // 名前と内容が両方入力されている場合、ボタンを有効にする
       isButtonEnabled = nameTextController.text.trim().isNotEmpty &&
           favorTextController.text.trim().isNotEmpty;
     });
   }
 
+  String _formatDate(DateTime date) {
+    return "${date.year}年${date.month}月${date.day}日";
+  }
+
   @override
   void initState() {
     super.initState();
-    // 入力内容が変わるたびにボタンの状態を更新
     nameTextController.addListener(_onTextChanged);
     favorTextController.addListener(_onTextChanged);
   }
 
   @override
   void dispose() {
-    // リスナーを解除
     nameTextController.removeListener(_onTextChanged);
     favorTextController.removeListener(_onTextChanged);
     super.dispose();
@@ -63,7 +69,6 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
 
   @override
   Widget build(BuildContext context) {
-    // 日付のフォーマットを指定
     final favorDateString =
         "${selectedDate.year}/${selectedDate.month}/${selectedDate.day}";
 
@@ -107,39 +112,39 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: CupertinoButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {
-                  final nameText = nameTextController.text.trim();
-                  final favorText = favorTextController.text.trim();
-                  final memoText = memoTextController.text.trim();
-                  if (favorText.isNotEmpty) {
-                    if (widget.type == FavorType.received) {
-                      ref
-                          .read(receivedFavorNotifierProvider.notifier)
-                          .addReceivedFavor(
-                            ReceivedFavor(
-                              id: UuidUtils.generateUuid(),
-                              giverName: nameText,
-                              favorText: favorText,
-                              favorDate: selectedDate,
-                              memo: memoText,
-                            ),
-                          );
-                    } else {
-                      ref
-                          .read(repaidFavorNotifierProvider.notifier)
-                          .addRepaidFavor(
-                            RepaidFavor(
-                              id: UuidUtils.generateUuid(),
-                              receivedFavorId: widget.receivedFavorId!,
-                              favorText: favorText,
-                              favorDate: selectedDate,
-                              memo: memoText,
-                            ),
-                          );
-                    }
-                    Navigator.pop(context);
-                  }
-                },
+                onPressed: isButtonEnabled
+                    ? () {
+                        final nameText = nameTextController.text.trim();
+                        final favorText = favorTextController.text.trim();
+                        final memoText = memoTextController.text.trim();
+                        if (widget.type == FavorType.received) {
+                          ref
+                              .read(receivedFavorNotifierProvider.notifier)
+                              .addReceivedFavor(
+                                ReceivedFavor(
+                                  id: UuidUtils.generateUuid(),
+                                  giverName: nameText,
+                                  favorText: favorText,
+                                  favorDate: selectedDate,
+                                  memo: memoText,
+                                ),
+                              );
+                        } else {
+                          ref
+                              .read(repaidFavorNotifierProvider.notifier)
+                              .addRepaidFavor(
+                                RepaidFavor(
+                                  id: UuidUtils.generateUuid(),
+                                  receivedFavorId: widget.receivedFavorId!,
+                                  favorText: favorText,
+                                  favorDate: selectedDate,
+                                  memo: memoText,
+                                ),
+                              );
+                        }
+                        Navigator.pop(context);
+                      }
+                    : null,
                 child: Text(
                   "追加",
                   style: TextStyle(
@@ -163,21 +168,90 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    CupertinoTextField(
-                      controller: nameTextController,
-                      placeholder: "名前",
-                      padding: const EdgeInsets.all(12),
-                    ),
-
-                    const SizedBox(height: 20),
-
+                    if (widget.type == FavorType.repaid &&
+                        widget.receivedFavor != null)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'してもらったこと',
+                            style: TextStyle(
+                                fontSize: 14, color: AppColors.textGray),
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 11,
+                                backgroundColor: AppColors.primary,
+                                child: const Icon(
+                                  Icons.person_outline,
+                                  size: 17,
+                                  color: AppColors.backgroundWhite,
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                widget.receivedFavor!.giverName,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: AppColors.textField,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            widget.receivedFavor!.favorText,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            _formatDate(widget.receivedFavor!.favorDate),
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: AppColors.textField,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          const Divider(
+                            height: 1,
+                            thickness: 1,
+                            color: AppColors.strokeGrey,
+                          ),
+                          const SizedBox(height: 12),
+                          const Text(
+                            'メモ',
+                            style: TextStyle(
+                                fontSize: 14, color: AppColors.textGray),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            widget.receivedFavor!.memo ?? '',
+                            style: const TextStyle(
+                                fontSize: 14, color: AppColors.textField),
+                          ),
+                        ],
+                      ),
+                    if (widget.type == FavorType.received) ...[
+                      CupertinoTextField(
+                        controller: nameTextController,
+                        placeholder: "名前",
+                        padding: const EdgeInsets.all(12),
+                      ),
+                      const SizedBox(height: 20),
+                    ] else ...[
+                      const SizedBox(height: 12),
+                    ],
                     Container(
                       decoration: BoxDecoration(
                         color: AppColors.backgroundWhite,
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                            color: AppColors.strokeGrey, 
-                            width: 0.5),
+                        border:
+                            Border.all(color: AppColors.strokeGrey, width: 0.5),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -188,9 +262,8 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                                 ? "してもらったこと"
                                 : "したこと",
                             padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(), 
+                            decoration: const BoxDecoration(),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                             child: Container(
@@ -198,7 +271,6 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                               color: AppColors.strokeGrey,
                             ),
                           ),
-
                           CupertinoTextField(
                             controller: memoTextController,
                             placeholder: "メモ",
@@ -208,23 +280,17 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                         ],
                       ),
                     ),
-
                     const SizedBox(height: 20),
-
-                    // 「してもらった日」のテキストとスイッチを表示
                     Container(
                       padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                       decoration: BoxDecoration(
                         color: AppColors.backgroundWhite,
                         borderRadius: BorderRadius.circular(5),
-                        border: Border.all(
-                          color: AppColors.strokeGrey,
-                          width: 0.5,
-                        ),
+                        border:
+                            Border.all(color: AppColors.strokeGrey, width: 0.5),
                       ),
                       child: Column(
                         children: [
-                          // ← ここは常に表示される部分（Row）
                           Row(
                             children: [
                               Icon(
@@ -262,8 +328,6 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                               ),
                             ],
                           ),
-
-                          // ↓ この部分だけアニメーションするようにする
                           AnimatedSize(
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeInOut,
@@ -287,12 +351,11 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                                       ),
                                     ],
                                   )
-                                : const SizedBox.shrink(), // 非表示時は空ウィジェット
+                                : const SizedBox.shrink(),
                           ),
                         ],
                       ),
                     ),
-
                     const SizedBox(height: 16),
                   ],
                 ),
@@ -306,13 +369,20 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
 }
 
 void showFavorAddModal(BuildContext context, FavorType type,
-    {String? receivedFavorId}) {
+    {String? receivedFavorId, ReceivedFavor? receivedFavor}) {
   showModalBottomSheet(
     context: context,
-    isScrollControlled: true, // スクロール制御を有効にして高さ調整
-    backgroundColor: AppColors.backgroundModal, // 背景色を透明に
+    isScrollControlled: true,
+    backgroundColor: AppColors.backgroundModal,
     builder: (BuildContext context) {
-      return FavorAddModal(type: type, receivedFavorId: receivedFavorId);
+      return FractionallySizedBox(
+        heightFactor: 0.93, // 高さの割合（80%）
+        child: FavorAddModal(
+          type: type,
+          receivedFavorId: receivedFavorId,
+          receivedFavor: receivedFavor,
+        ),
+      );
     },
   );
 }
