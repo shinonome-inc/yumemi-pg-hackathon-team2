@@ -1,7 +1,10 @@
 import 'package:app/model/share_favor.dart';
+import 'package:app/model/share_favor_request.dart';
 import 'package:app/model/user.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'api_client.g.dart';
@@ -35,6 +38,27 @@ class ApiClient {
     return ApiResponse(items: items, nextCursor: nextCursor);
   }
 
+  Future<void> postShareFavor(ShareFavorRequest request) async {
+    final formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
+
+    final data = {
+      'user_id': request.userId,
+      'received_favor_text': request.receivedFavorText,
+      'received_favor_date': formatter.format(request.receivedFavorDate),
+      'giver_name': request.giverName,
+      'repaid_favor_text': request.repaidFavorText,
+      'repaid_favor_date': formatter.format(request.repaidFavorDate),
+      'memo': request.memo,
+    };
+
+    print("POST data: $data");
+
+    await _dio.post(
+      '/record/create',
+      data: data,
+    );
+  }
+
   Future<User> createUser(String username) async {
     final response = await _dio.post(
       '/user/create',
@@ -65,6 +89,8 @@ class ApiClient {
     required int receivedFavorCount,
     required int repaidFavorCount,
   }) async {
+    debugPrint(
+        'receivedFavorCount: $receivedFavorCount, repaidFavorCount: $repaidFavorCount');
     await _dio.put(
       '/user/update',
       data: {

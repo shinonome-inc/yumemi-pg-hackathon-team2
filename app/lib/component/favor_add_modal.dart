@@ -1,11 +1,14 @@
 import 'package:app/constants/app_colors.dart';
 import 'package:app/model/share_favor.dart' as UuidUtils;
+import 'package:app/model/share_favor_request.dart';
+import 'package:app/provider/favor_count_updater.dart';
 import 'package:app/provider/received_favor_notifier.dart';
 import 'package:app/provider/repaid_favor_notifier.dart';
+import 'package:app/provider/share_favor_uploader.dart';
+import 'package:app/provider/user_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:app/model/received_favor.dart';
 import 'package:app/model/repaid_favor.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -29,6 +32,29 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
   DateTime selectedDate = DateTime.now();
   bool showCalendar = false;
   bool isButtonEnabled = false; // ボタンが有効かどうか
+
+  Future<void> shareFavor(String favorText, String memoText) async {
+    await ref.read(repaidFavorNotifierProvider.notifier).addRepaidFavor(
+          RepaidFavor(
+            id: UuidUtils.generateUuid(),
+            receivedFavorId: widget.receivedFavorId!,
+            favorText: favorText,
+            favorDate: selectedDate,
+            memo: memoText,
+          ),
+        );
+    final favor = ShareFavorRequest(
+      userId: 1,
+      receivedFavorText: 'お菓子買ってもらった',
+      receivedFavorDate: DateTime.parse('2025-03-23T14:00:00.000'),
+      giverName: '佐藤さん2',
+      repaidFavorText: '運転した',
+      repaidFavorDate: DateTime.parse('2025-03-23T14:00:00.000'),
+      memo: 'ありがとう！また何かあれば助ける',
+    );
+    await ref.read(shareFavorUploaderProvider.notifier).upload(favor);
+    await ref.read(favorCountUpdaterProvider.notifier).updateFavorCounts();
+  }
 
   // 日付選択処理
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
@@ -103,7 +129,7 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: CupertinoButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {
+                onPressed: () async {
                   final nameText = nameTextController.text.trim();
                   final favorText = favorTextController.text.trim();
                   final memoText = memoTextController.text.trim();
@@ -121,19 +147,23 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                             ),
                           );
                     } else {
-                      ref
-                          .read(repaidFavorNotifierProvider.notifier)
-                          .addRepaidFavor(
-                            RepaidFavor(
-                              id: UuidUtils.generateUuid(),
-                              receivedFavorId: widget.receivedFavorId!,
-                              favorText: favorText,
-                              favorDate: selectedDate,
-                              memo: memoText,
-                            ),
-                          );
+                      try {
+                        final user = ref.read(userNotifierProvider).value;
+                        if (user == null) {
+                          throw Exception('ユーザー情報が存在しません');
+                        }
+                        shareFavor(favorText, memoText);
+                      } catch (e) {
+                        debugPrint('エラー: $e');
+                      }
                     }
-                    Navigator.pop(context);
+                    if (context.mounted) {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        '/root',
+                        (route) => false,
+                      );
+                    }
                   }
                 },
                 child: Text(

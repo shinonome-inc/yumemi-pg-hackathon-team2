@@ -44,11 +44,7 @@ class HomePage extends ConsumerWidget {
                       size: 30,
                       color: Colors.grey,
                     ),
-                    onPressed: () async {
-                      await ref
-                          .read(favorCountUpdaterProvider.notifier)
-                          .updateFavorCounts();
-                    },
+                    onPressed: () async {},
                   ),
                   IconButton(
                     icon: Icon(
