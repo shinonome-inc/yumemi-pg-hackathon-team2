@@ -3,10 +3,12 @@ import 'package:app/page/loading/loading_page.dart';
 import 'package:app/page/navigation_root/navigation_root.dart';
 import 'package:app/page/setting/setting_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_paging_utils/theme_extension.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const ProviderScope(child: MyApp()));
 }
 
