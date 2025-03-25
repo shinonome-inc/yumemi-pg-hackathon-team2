@@ -50,16 +50,6 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
       throw Exception('対応する受けた恩が見つかりません');
     }
 
-    await ref.read(repaidFavorNotifierProvider.notifier).addRepaidFavor(
-          RepaidFavor(
-            id: UuidUtils.generateUuid(),
-            receivedFavorId: receivedFavorId,
-            favorText: favorText,
-            favorDate: selectedDate,
-            memo: memoText,
-          ),
-        );
-
     final favor = ShareFavorRequest(
       userId: userId,
       receivedFavorText: receivedFavor.favorText,
@@ -85,13 +75,11 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
       if (widget.type == FavorType.received) {
         isButtonEnabled = nameTextController.text.trim().isNotEmpty &&
             favorTextController.text.trim().isNotEmpty;
-      }
-      else {
+      } else {
         isButtonEnabled = favorTextController.text.trim().isNotEmpty;
       }
     });
   }
-
 
   String _formatDate(DateTime date) {
     return "${date.year}年${date.month}月${date.day}日";
@@ -175,6 +163,17 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                           );
                     } else {
                       try {
+                        await ref
+                            .read(repaidFavorNotifierProvider.notifier)
+                            .addRepaidFavor(
+                              RepaidFavor(
+                                id: UuidUtils.generateUuid(),
+                                receivedFavorId: widget.receivedFavorId!,
+                                favorText: favorText,
+                                favorDate: selectedDate,
+                                memo: memoText,
+                              ),
+                            );
                         final user = ref.read(userNotifierProvider).value;
                         if (user == null) {
                           throw Exception('ユーザー情報が存在しません');
@@ -289,6 +288,57 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                         controller: nameTextController,
                         placeholder: "名前",
                         padding: const EdgeInsets.all(12),
+                      ),
+                      const SizedBox(height: 8),
+                      FutureBuilder<List<String>>(
+                        future: ref
+                            .read(receivedFavorNotifierProvider.notifier)
+                            .getAllGiverNames(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData ||
+                              nameTextController.text.isEmpty) {
+                            return const SizedBox.shrink();
+                          }
+
+                          final suggestions = snapshot.data!
+                              .where((name) =>
+                                  name.contains(nameTextController.text.trim()))
+                              .toList();
+
+                          if (suggestions.isEmpty) {
+                            return const SizedBox.shrink();
+                          }
+                          return SizedBox(
+                            height: 72,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: suggestions.length,
+                              separatorBuilder: (_, __) =>
+                                  const SizedBox(width: 12),
+                              itemBuilder: (context, index) {
+                                final name = suggestions[index];
+                                return GestureDetector(
+                                  onTap: () {
+                                    nameTextController.text = name;
+                                  },
+                                  child: Column(
+                                    children: [
+                                      const CircleAvatar(
+                                        radius: 24,
+                                        backgroundColor: AppColors.primary,
+                                        child: Icon(Icons.person,
+                                            color: Colors.white),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(name,
+                                          style: const TextStyle(fontSize: 12)),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                        },
                       ),
                       const SizedBox(height: 20),
                     ] else ...[
@@ -424,7 +474,7 @@ void showFavorAddModal(BuildContext context, FavorType type,
     backgroundColor: AppColors.backgroundModal,
     builder: (BuildContext context) {
       return FractionallySizedBox(
-        heightFactor: 0.93, 
+        heightFactor: 0.93,
         child: FavorAddModal(
           type: type,
           receivedFavorId: receivedFavorId,

@@ -116,11 +116,11 @@ class RepaidFavorList extends ConsumerWidget {
             ),
           ),
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, _) => Center(child: Text('エラー: $error')),
+          error: (error, _) => Center(child: Text('エラーが発生しました。')),
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, _) => Center(child: Text('エラー: $error')),
+      error: (error, _) => Center(child: Text('エラーが発生しました。')),
     );
   }
 }

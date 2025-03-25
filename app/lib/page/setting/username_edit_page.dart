@@ -1,3 +1,4 @@
+import 'package:app/component/button_component.dart';
 import 'package:app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -98,23 +99,9 @@ class UsernameEditPage extends HookConsumerWidget {
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
             const SizedBox(height: 32),
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFE98658),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: isButtonEnabled.value ? onUpdate : null,
-                child: const Text(
-                  '更新する',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
+            ButtonComponent(
+              onPressed: isButtonEnabled.value ? onUpdate : null,
+            )
           ],
         ),
       ),

@@ -1,4 +1,6 @@
+import 'package:app/component/button_component.dart';
 import 'package:app/component/favor_add_modal.dart';
+import 'package:app/constants/app_colors.dart';
 import 'package:app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:app/model/received_favor.dart';
@@ -129,31 +131,15 @@ class FavorDetailPage extends StatelessWidget {
 
             // 下部のスペースを埋める
             const Spacer(),
-
-            // 報恩するボタン
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  showFavorAddModal(
-                    context,
-                    FavorType.repaid,
-                    receivedFavorId: favor.id,
-                    receivedFavor: favor,
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.secondary,
-                  foregroundColor: AppColors.backgroundWhite,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  '報恩する',
-                  style: TextStyle(fontSize: 16),
-                ),
+            ButtonComponent(
+              buttonColor: AppColors.secondary,
+              textColor: Colors.white,
+              buttonText: '恩返しする',
+              onPressed: () => showFavorAddModal(
+                context,
+                FavorType.repaid,
+                receivedFavorId: favor.id,
+                receivedFavor: favor,
               ),
             ),
           ],

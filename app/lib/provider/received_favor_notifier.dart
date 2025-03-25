@@ -41,6 +41,13 @@ class ReceivedFavorNotifier extends _$ReceivedFavorNotifier {
     }
   }
 
+  Future<List<String>> getAllGiverNames() async {
+    final currentFavors = await _storage.loadReceivedFavors();
+    final names = currentFavors.map((f) => f.giverName).toSet().toList();
+    names.sort();
+    return names;
+  }
+
   Future<int> getReceivedFavorCount() async {
     final currentFavors = await _storage.loadReceivedFavors();
     return currentFavors.length;
