@@ -1,5 +1,6 @@
 import 'package:app/component/error_page.dart';
 import 'package:app/constants/app_colors.dart';
+import 'package:app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:app/provider/ranking_provider.dart';
@@ -39,7 +40,7 @@ class RankingFavorList extends ConsumerWidget {
                   ),
                   const SizedBox(width: 10),
                   const Icon(Icons.account_circle,
-                      color: Colors.blue, size: 40),
+                      color: AppColors.secondary, size: 40),
                 ],
               ),
               title: Text(
@@ -51,7 +52,7 @@ class RankingFavorList extends ConsumerWidget {
               ),
               subtitle: Text(
                 '恩返し率: ${user.unreturnedRatio.toStringAsFixed(1)}%',
-                style: const TextStyle(color: Colors.grey),
+                style: const TextStyle(color: AppColors.textGray),
               ),
             );
           },

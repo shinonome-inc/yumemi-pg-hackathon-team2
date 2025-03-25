@@ -1,4 +1,5 @@
 import 'package:app/component/button_component.dart';
+import 'package:app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -56,15 +57,15 @@ class UsernameEditPage extends HookConsumerWidget {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFEF7F4),
+      backgroundColor:AppColors.backgroundOrange,
       appBar: AppBar(
         title: const Text(
           'ニックネームの更新',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: const Color(0xFFFEF7F4),
+        backgroundColor: AppColors.backgroundOrange,
         elevation: 0,
-        foregroundColor: Colors.black,
+        foregroundColor: AppColors.textBlack,
         centerTitle: true,
       ),
       body: Padding(
@@ -74,12 +75,12 @@ class UsernameEditPage extends HookConsumerWidget {
           children: [
             const Text(
               'ニックネームを設定してください',
-              style: TextStyle(color: Color(0xFFE98658), fontSize: 14),
+              style: TextStyle(color:AppColors.primary, fontSize: 14),
             ),
             const SizedBox(height: 8),
             TextField(
               controller: controller,
-              cursorColor: Color(0xFFE98658),
+              cursorColor:AppColors.primary,
               cursorWidth: 2,
               decoration: InputDecoration(
                 filled: true,

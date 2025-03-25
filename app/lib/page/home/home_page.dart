@@ -1,3 +1,4 @@
+import 'package:app/constants/app_colors.dart';
 import 'package:app/page/home/received_favor_list.dart';
 import 'package:app/page/home/repaid_favor_list.dart';
 import 'package:app/page/setting/setting_page.dart';
@@ -15,13 +16,14 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final int topBarIndex = ref.watch(giveTakeProvider);
-    final Color topBarColor = [Colors.orange, Colors.blue][topBarIndex];
+    final Color topBarColor =
+        [AppColors.primary, AppColors.secondary][topBarIndex];
 
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.backgroundWhite,
           title: Stack(
             children: [
               Column(children: [
@@ -42,7 +44,7 @@ class HomePage extends ConsumerWidget {
                     icon: Icon(
                       Icons.notifications_none,
                       size: 30,
-                      color: Colors.grey,
+                      color: AppColors.iconGrey,
                     ),
                     onPressed: () async {},
                   ),
@@ -50,7 +52,7 @@ class HomePage extends ConsumerWidget {
                     icon: Icon(
                       Icons.settings_outlined,
                       size: 30,
-                      color: Colors.grey,
+                      color: AppColors.iconGrey,
                     ),
                     onPressed: () {
                       Navigator.of(context).push(

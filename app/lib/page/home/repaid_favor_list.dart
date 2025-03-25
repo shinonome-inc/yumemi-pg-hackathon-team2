@@ -57,14 +57,14 @@ class RepaidFavorList extends ConsumerWidget {
                 //   ),
                 // );
                 return Card(
-                  color: Colors.white,
+                  color: AppColors.backgroundWhite,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   elevation: 0,
                   child: ListTile(
                     leading: Icon(
                       Icons.account_circle,
-                      color: Colors.blue,
+                      color:AppColors.secondary,
                       size: 50,
                     ),
                     subtitle: Column(
@@ -76,7 +76,7 @@ class RepaidFavorList extends ConsumerWidget {
                               linkedReceivedFavor.giverName,
                               style: TextStyle(
                                 fontSize: 15,
-                                color: Color(0xFF7C7C7C),
+                                color: AppColors.textGray,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -96,14 +96,14 @@ class RepaidFavorList extends ConsumerWidget {
                           favor.favorText,
                           style: TextStyle(
                             fontSize: 15,
-                            color: Colors.black,
+                            color: AppColors.textBlack,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           style: TextStyle(
                             fontSize: 15,
-                            color: Color(0xFFBCBCBC),
+                            color: AppColors.textField,
                             fontWeight: FontWeight.bold,
                           ),
                           favor.memo + "⇨" + repaidFavorDateString,

@@ -20,4 +20,5 @@ class AppColors {
   static const iconGreen = Color(0xFFCADC68);
   static const iconPink = Color(0xFFC868DC);
   static const strokeGrey = Color(0xFFD8D8D8);
+  static const iconGrey = Color(0xFFD7D7D7);
 }

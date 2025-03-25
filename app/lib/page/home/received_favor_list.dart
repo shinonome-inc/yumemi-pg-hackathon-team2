@@ -1,4 +1,5 @@
 import 'package:app/component/favor_add_modal.dart';
+import 'package:app/constants/app_colors.dart';
 import 'package:app/page/favor_detail/favor_detail_page.dart';
 import 'package:app/page/home/home_page.dart';
 import 'package:app/provider/received_favor_notifier.dart';
@@ -17,7 +18,7 @@ class ReceivedFavorList extends ConsumerWidget {
         Expanded(
           child: receivedFavors.when(
             data: (favors) => Scaffold(
-              backgroundColor: Colors.orange.withValues(alpha: 0.05),
+              backgroundColor: AppColors.backgroundOrange,
               body: ListView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 7, vertical: 7),
                 itemCount: favors.length,
@@ -66,7 +67,7 @@ class ReceivedFavorList extends ConsumerWidget {
                       child: ListTile(
                         leading: Icon(
                           Icons.account_circle,
-                          color: Colors.blue,
+                          color:AppColors.primary,
                           size: 50,
                         ),
                         subtitle: Column(
@@ -78,7 +79,7 @@ class ReceivedFavorList extends ConsumerWidget {
                                   favor.giverName,
                                   style: TextStyle(
                                     fontSize: 15,
-                                    color: Color(0xFF7C7C7C),
+                                    color:AppColors.textGray,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -99,7 +100,7 @@ class ReceivedFavorList extends ConsumerWidget {
                               favor.favorText,
                               style: TextStyle(
                                 fontSize: 15,
-                                color: Colors.black,
+                                color: AppColors.textBlack,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -107,7 +108,7 @@ class ReceivedFavorList extends ConsumerWidget {
                               favor.memo,
                               style: TextStyle(
                                 fontSize: 15,
-                                color: Color(0xFFBCBCBC),
+                                color: AppColors.textField,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -128,14 +129,14 @@ class ReceivedFavorList extends ConsumerWidget {
                 },
               ),
               floatingActionButton: FloatingActionButton(
-                backgroundColor: Colors.orange,
+                backgroundColor: AppColors.primary,
                 mini: true,
                 onPressed: () {
                   showFavorAddModal(context, FavorType.received);
                 }, //ここに関数を入れる
                 shape: CircleBorder(),
                 tooltip: "Increment",
-                child: const Icon(color: Colors.white, Icons.add, size: 25),
+                child: const Icon(color: AppColors.backgroundWhite, Icons.add, size: 25),
               ),
             ),
             loading: () => const Center(child: CircularProgressIndicator()),
