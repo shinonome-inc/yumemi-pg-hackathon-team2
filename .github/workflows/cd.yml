@@ -45,6 +45,11 @@ jobs:
           cd app
           flutter pub get
 
+      - name: Create .env file
+        run: |
+          cd app
+          echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" > .env
+
       - name: Build web
         run: |
           cd app

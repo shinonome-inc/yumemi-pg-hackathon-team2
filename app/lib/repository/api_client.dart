@@ -4,6 +4,7 @@ import 'package:app/model/share_favor_request.dart';
 import 'package:app/model/user.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,7 +15,9 @@ part 'api_client.g.dart';
 ApiClient apiClient(Ref ref) => ApiClient();
 
 class ApiClient {
-  final Dio _dio = Dio(BaseOptions(baseUrl: 'http://127.0.0.1:5000/'))
+  final Dio _dio = Dio(BaseOptions(
+    baseUrl: dotenv.env['BACKEND_URL'] ?? 'http://localhost:5000/',
+  ))
     ..interceptors.add(LogInterceptor(
       request: true,
       requestBody: true,

@@ -53,6 +53,7 @@ dependencies:
   json_annotation:
   settings_ui: ^2.0.2
   riverpod_paging_utils: 0.7.0
+  flutter_dotenv:
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +93,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
