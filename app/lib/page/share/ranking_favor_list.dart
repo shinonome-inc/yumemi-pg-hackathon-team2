@@ -1,3 +1,5 @@
+import 'package:app/component/error_page.dart';
+import 'package:app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:app/provider/ranking_provider.dart';
@@ -12,7 +14,12 @@ class RankingFavorList extends ConsumerWidget {
     return Scaffold(
       body: rankingAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('エラー: $e')),
+        error: (e, stack) => ErrorView(
+          err: e,
+          stack: stack,
+          refreshCallback: () => ref.refresh(rankingUsersProvider),
+          backgroundColor: AppColors.backgroundBlue,
+        ),
         data: (users) => ListView.separated(
           itemCount: users.length,
           separatorBuilder: (_, __) => const Divider(height: 0),

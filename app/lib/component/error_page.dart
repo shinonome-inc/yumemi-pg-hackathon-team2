@@ -1,3 +1,4 @@
+import 'package:app/component/button_component.dart';
 import 'package:app/constants/app_colors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,23 +8,23 @@ class ErrorView extends ConsumerWidget {
   final Object err;
   final StackTrace? stack;
   final void Function()? debugCallback;
-
-  /// リトライ対象となる Provider を受け取る
-  final ProviderBase provider;
+  final void Function()? refreshCallback;
+  final Color backgroundColor;
 
   const ErrorView({
     super.key,
     required this.err,
-    required this.provider,
     this.stack,
     this.debugCallback,
+    this.refreshCallback,
+    this.backgroundColor = AppColors.backgroundOrange,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Container(
-        color: AppColors.backgroundOrange,
+        color: backgroundColor,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(24.0),
@@ -36,11 +37,9 @@ class ErrorView extends ConsumerWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    ref.invalidate(provider);
-                  },
-                  child: const Text('タップして再試行'),
+                ButtonComponent(
+                  onPressed: refreshCallback,
+                  buttonText: 'タップして再読み込み',
                 ),
                 if (kDebugMode)
                   Padding(
