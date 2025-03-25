@@ -50,16 +50,6 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
       throw Exception('対応する受けた恩が見つかりません');
     }
 
-    await ref.read(repaidFavorNotifierProvider.notifier).addRepaidFavor(
-          RepaidFavor(
-            id: UuidUtils.generateUuid(),
-            receivedFavorId: receivedFavorId,
-            favorText: favorText,
-            favorDate: selectedDate,
-            memo: memoText,
-          ),
-        );
-
     final favor = ShareFavorRequest(
       userId: userId,
       receivedFavorText: receivedFavor.favorText,
@@ -85,13 +75,11 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
       if (widget.type == FavorType.received) {
         isButtonEnabled = nameTextController.text.trim().isNotEmpty &&
             favorTextController.text.trim().isNotEmpty;
-      }
-      else {
+      } else {
         isButtonEnabled = favorTextController.text.trim().isNotEmpty;
       }
     });
   }
-
 
   String _formatDate(DateTime date) {
     return "${date.year}年${date.month}月${date.day}日";
@@ -175,6 +163,17 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                           );
                     } else {
                       try {
+                        await ref
+                            .read(repaidFavorNotifierProvider.notifier)
+                            .addRepaidFavor(
+                              RepaidFavor(
+                                id: UuidUtils.generateUuid(),
+                                receivedFavorId: widget.receivedFavorId!,
+                                favorText: favorText,
+                                favorDate: selectedDate,
+                                memo: memoText,
+                              ),
+                            );
                         final user = ref.read(userNotifierProvider).value;
                         if (user == null) {
                           throw Exception('ユーザー情報が存在しません');
@@ -424,7 +423,7 @@ void showFavorAddModal(BuildContext context, FavorType type,
     backgroundColor: AppColors.backgroundModal,
     builder: (BuildContext context) {
       return FractionallySizedBox(
-        heightFactor: 0.93, 
+        heightFactor: 0.93,
         child: FavorAddModal(
           type: type,
           receivedFavorId: receivedFavorId,
