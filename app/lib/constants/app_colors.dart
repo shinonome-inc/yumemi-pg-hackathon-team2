@@ -6,7 +6,7 @@ class AppColors {
   AppColors._();
   static const backgroundOrange = Color(0xFFFDF5F2);
   static const lightGrey = Color(0xFFC4C9D0);
-  static const backgroundModal = Color(0xFFF5F5F5);
+  static const backgroundModal = Color(0xFFF3F3F3);
   static const primary = Color(0xFFE98658);
   static const secondary = Color(0xFF689EDC);
   static const textField = Color(0xFFBCBCBC);
@@ -19,4 +19,5 @@ class AppColors {
   static const iconRed = Color(0xFFDC6887);
   static const iconGreen = Color(0xFFCADC68);
   static const iconPink = Color(0xFFC868DC);
+  static const strokeGrey = Color(0xFFD8D8D8);
 }

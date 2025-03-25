@@ -133,12 +133,11 @@ class FavorDetailPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => FavorAddModal(
-                      type: FavorType.repaid,
-                      receivedFavorId: favor.id,
-                    ),
+                  showFavorAddModal(
+                    context,
+                    FavorType.repaid,
+                    receivedFavorId: favor.id,
+                    receivedFavor: favor,
                   );
                 },
                 style: ElevatedButton.styleFrom(
