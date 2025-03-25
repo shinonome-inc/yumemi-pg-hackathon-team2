@@ -7,7 +7,7 @@ part of 'received_favor_notifier.dart';
 // **************************************************************************
 
 String _$receivedFavorNotifierHash() =>
-    r'7527cf7ce21227fdfe337ffede69f2e2ec6b5e5a';
+    r'1494ae812553b6b3281b6598846f5a8b8013f667';
 
 /// See also [ReceivedFavorNotifier].
 @ProviderFor(ReceivedFavorNotifier)
