@@ -30,7 +30,7 @@ class LoadingPage extends ConsumerWidget {
         error: (err, stack) => Center(
           child: ErrorView(
             err: err,
-            provider: userNotifierProvider,
+            refreshCallback: () => ref.invalidate(userNotifierProvider),
             stack: stack,
             debugCallback: () {
               Navigator.of(context).pushReplacementNamed('/root');

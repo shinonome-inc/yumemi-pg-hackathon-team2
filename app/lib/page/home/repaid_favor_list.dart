@@ -1,3 +1,4 @@
+import 'package:app/constants/app_colors.dart';
 import 'package:app/model/received_favor.dart';
 import 'package:app/provider/received_favor_notifier.dart';
 import 'package:app/provider/repaid_favor_notifier.dart';
@@ -16,7 +17,7 @@ class RepaidFavorList extends ConsumerWidget {
       data: (receivedData) {
         return repaidFavors.when(
           data: (repaidData) => Scaffold(
-            backgroundColor: Colors.blue.withValues(alpha: 0.05),
+            backgroundColor: AppColors.backgroundBlue,
             body: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               itemCount: repaidData.length,
@@ -115,11 +116,11 @@ class RepaidFavorList extends ConsumerWidget {
             ),
           ),
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, _) => Center(child: Text('エラー: $error')),
+          error: (error, _) => Center(child: Text('エラーが発生しました。')),
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, _) => Center(child: Text('エラー: $error')),
+      error: (error, _) => Center(child: Text('エラーが発生しました。')),
     );
   }
 }
