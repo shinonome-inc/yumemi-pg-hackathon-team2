@@ -39,31 +39,6 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
   bool showCalendar = false;
   bool isButtonEnabled = false;
 
-  Future<void> shareFavor(
-      String nameText, String favorText, String memoText, int userId) async {
-    final receivedFavorId = widget.receivedFavorId!;
-    final receivedFavor = await ref
-        .read(receivedFavorNotifierProvider.notifier)
-        .getReceivedFavorById(receivedFavorId);
-
-    if (receivedFavor == null) {
-      throw Exception('対応する受けた恩が見つかりません');
-    }
-
-    final favor = ShareFavorRequest(
-      userId: userId,
-      receivedFavorText: receivedFavor.favorText,
-      receivedFavorDate: receivedFavor.favorDate,
-      giverName: nameText,
-      repaidFavorText: favorText,
-      repaidFavorDate: selectedDate,
-      memo: memoText,
-    );
-
-    await ref.read(shareFavorUploaderProvider.notifier).upload(favor);
-    await ref.read(favorCountUpdaterProvider.notifier).updateFavorCounts();
-  }
-
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     setState(() {
       selectedDate = selectedDay;
@@ -178,7 +153,31 @@ class _FavorAddModalState extends ConsumerState<FavorAddModal> {
                         if (user == null) {
                           throw Exception('ユーザー情報が存在しません');
                         }
-                        shareFavor(nameText, favorText, memoText, user.userId);
+                        final receivedFavorId = widget.receivedFavorId!;
+                        final receivedFavor = await ref
+                            .read(receivedFavorNotifierProvider.notifier)
+                            .getReceivedFavorById(receivedFavorId);
+
+                        if (receivedFavor == null) {
+                          throw Exception('対応する受けた恩が見つかりません');
+                        }
+
+                        final favor = ShareFavorRequest(
+                          userId: user.userId,
+                          receivedFavorText: receivedFavor.favorText,
+                          receivedFavorDate: receivedFavor.favorDate,
+                          giverName: nameText,
+                          repaidFavorText: favorText,
+                          repaidFavorDate: selectedDate,
+                          memo: memoText,
+                        );
+
+                        await ref
+                            .read(shareFavorUploaderProvider.notifier)
+                            .upload(favor);
+                        await ref
+                            .read(favorCountUpdaterProvider.notifier)
+                            .updateFavorCounts();
                       } catch (e) {
                         debugPrint('エラー: $e');
                       }
