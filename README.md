@@ -1,7 +1,7 @@
 # ご恩と奉公
 2025/ 3/6~3/27に行われたYumemi-PG-Hackathonで開発したteam2の作品
 
-# [アプリデモ](https://shinonome.io/yumemi-pg-hackathon-team2/)
+# [アプリデモ(バグあります🙇‍♂️)](https://shinonome.io/yumemi-pg-hackathon-team2/)
 
 <img width="480" alt="スクリーンショット 2025-05-15 16 01 43" src="https://github.com/user-attachments/assets/8428b525-891c-45f6-9b49-248094ed44a4" />
 <img width="480" alt="スクリーンショット 2025-05-15 16 02 19" src="https://github.com/user-attachments/assets/9dcf87ba-dc17-4f2a-85da-6929ad3ed082" />
@@ -18,4 +18,5 @@ FigJamでアイデア出し
 
 # 実装
 サーバー: Flask x Render
+
 クライアント: Flutter x Firebase Hosting
