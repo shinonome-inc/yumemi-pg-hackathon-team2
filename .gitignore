@@ -5,3 +5,9 @@
 # backend
 # virtualenv
 venv/
+
+# cache
+__pycache__/
+
+# DB
+app.db
